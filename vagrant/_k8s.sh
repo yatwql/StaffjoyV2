@@ -1,11 +1,12 @@
 #!/bin/bash
 
-ARCH=amd64
-export K8S_VERSION="v1.4.0" # should match google cloud deployed version
+# @depricated
 
+ARCH=amd64
+export K8S_VERSION="v1.5.0" # should match google cloud deployed version
+# export K8S_VERSION=$(curl -sS https://storage.googleapis.com/kubernetes-release/release/stable.txt)
 
 if [ ! -f /usr/local/bin/kubectl ]; then
-    # export K8S_VERSION=$(curl -sS https://storage.googleapis.com/kubernetes-release/release/stable.txt)
     curl -O https://storage.googleapis.com/kubernetes-release/release/${K8S_VERSION}/bin/linux/amd64/kubectl
     chmod +x kubectl
     sudo mv kubectl /usr/local/bin/kubectl
@@ -72,4 +73,4 @@ done
 kubectl create namespace development
 
 # kick off account-mysql
-kubectl --namespace=development create -R -f /home/vagrant/golang/src/v2.staffjoy.com/ci/k8s/development/infrastructure/app-mysql
+kubectl --namespace=development create -R -f ~/golang/src/v2.staffjoy.com/ci/k8s/development/infrastructure/app-mysql

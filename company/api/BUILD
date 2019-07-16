@@ -1,7 +1,7 @@
 package(default_visibility = ["//visibility:public"])
 
 load("//tools:build_rules/go.bzl", "go_binary")
-load("@bazel_tools//tools/build_defs/docker:docker.bzl", "docker_build")
+load("@io_bazel_rules_docker//container:container.bzl", "container_image")
 
 go_binary(
     name = "companyapi",
@@ -22,10 +22,11 @@ go_binary(
         "@go_gogo_protobuf//:types",
         "@go_gorilla_mux//:mux",
         "@go_grpc//:codes",
+        "@go_grpc//:status",
         "@go_grpc//:grpc",
         "@go_grpc//:grpclog",
         "@go_grpc_gateway//:runtime",
-        "@go_grpc_gateway//:third_party/googleapis/google/api",
+        "@go_genproto//:googleapis/api/annotations",
         "@go_grpc_gateway//:utilities",
         "@go_logrus//:logrus",
         "@go_protobuf//:proto",
@@ -35,9 +36,9 @@ go_binary(
     ],
 )
 
-docker_build(
+container_image(
     name = "docker",
-    base = "//docker:ubuntu-xenial",
+    base = "@ubuntu//image",
     cmd = "./companyapi",
     files = [
         ":companyapi",

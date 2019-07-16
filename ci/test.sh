@@ -13,7 +13,7 @@ declare -a npmservices=("myaccount")
 for npmservice in "${npmservices[@]}"
 do
     cd $npmservice
-    npm install
+    yarn install
     lintcount=$(./node_modules/.bin/eslint src/ | wc -l)
     if [ "$lintcount" -gt 0  ]; then
         echo "eslint found files that need formatting - please fix!"
@@ -36,7 +36,8 @@ if [ "$gocount" -gt 0 ]; then
 	exit 1
 fi
 
-buildcount=$(buildifier -mode=check $(find . -iname BUILD -type f -not -path "./vendor/*") | wc -l)
+# find better way to ignore node_modules more genericly.
+buildcount=$(buildifier -mode=check $(find . -iname BUILD -type f -not -path "./vendor/*" -type f -not -path "./myaccount/node_modules/*") | wc -l)
 if [ "$buildcount" -gt 0 ]; then
 	echo "Some BUILD files are not formatted. Run make build-fmt"
 	exit 1
