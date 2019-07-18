@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from '../../actions';
@@ -10,6 +11,7 @@ function ProfilePhoto({ photoUrl }) {
         className="circle-frame"
         role="presentation"
         src={photoUrl}
+        alt=""
       />
     </div>
   );
@@ -36,7 +38,7 @@ function mapDispatchToProps(dispatch) {
   return {
     changePhoto: bindActionCreators(
       actions.changePhoto,
-      dispatch
+      dispatch,
     ),
   };
 }

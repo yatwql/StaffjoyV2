@@ -1,5 +1,6 @@
 import _ from 'lodash';
-import React, { PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import * as actions from '../../actions';
@@ -13,8 +14,7 @@ import StaffjoyButton from '../StaffjoyButton';
 import Intercom from '../Intercom';
 import { routeToMicroservice } from '../../utility';
 
-class App extends React.Component {
-
+class App extends Component {
   componentDidMount() {
     const { dispatch } = this.props;
 
@@ -92,11 +92,12 @@ class App extends React.Component {
           />
         </div>
         {!_.isEmpty(intercomSettings)
-        &&
+        && (
         <Intercom
           {...intercomSettings}
           appID={intercomSettings.app_id}
-        />}
+        />
+        )}
       </div>
     );
   }
@@ -107,14 +108,14 @@ function mapStateToProps(state) {
   const whoAmIState = state.whoami;
   const userData = userState.data;
   const formData = state.forms;
-  const intercomSettings = state.whoami.intercomSettings;
+  const { intercomSettings } = state.whoami;
 
   const admin = _.get(whoAmIState.data, 'admin', {});
   const companies = _.get(admin, 'companies') || [];
 
   return {
-    isInitializing: _.isEmpty(userData) || !userState.lastUpdate ||
-      _.isEmpty(whoAmIState.data),
+    isInitializing: _.isEmpty(userData) || !userState.lastUpdate
+      || _.isEmpty(whoAmIState.data),
     userData,
     formData,
     companies,

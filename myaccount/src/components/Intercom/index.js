@@ -5,7 +5,9 @@
 // Since the file is so small, we decided to copy & paste the code rather
 // than forking react-intercom.
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 const canUseDOM = !!(
   (typeof window !== 'undefined' &&
   window.document && window.document.createElement)
@@ -21,8 +23,7 @@ export const IntercomAPI = (...args) => {
 
 export default class Intercom extends Component {
   static propTypes = {
-    appID: PropTypes.string,
-    app_id: PropTypes.string
+    appID: PropTypes.string.isRequired,
   };
 
   static displayName = 'Intercom';
@@ -32,7 +33,7 @@ export default class Intercom extends Component {
 
     const {
       appID,
-      ...otherProps,
+      ...otherProps
     } = props;
 
     if (!appID || !canUseDOM) {
@@ -52,8 +53,7 @@ export default class Intercom extends Component {
         s = d.createElement('script');
         s.async = 1;
         s.src = 'https://widget.intercom.io/widget/' + id;
-        x = d.getElementsByTagName('script')[0];
-        x.parentNode.insertBefore(s, x);
+        d.head.appendChild(s);
       })(window, document, appID);
     }
 
@@ -64,23 +64,25 @@ export default class Intercom extends Component {
     }
   }
 
-  componentWillMount() {
-    if (!canUseDOM) return;
-
-    // poll Intercom every 20 seconds for changes
-    this.pollIntercomId = setInterval(() => window.Intercom('update'), 20000);
-  }
-
   componentWillReceiveProps(nextProps) {
     const {
       appID,
-      ...otherProps,
+      ...otherProps
     } = nextProps;
 
     if (!canUseDOM) return;
 
     window.intercomSettings = { ...otherProps, app_id: appID };
-    window.Intercom('update', otherProps);
+
+    if (window.Intercom) {
+      if (this.loggedIn(this.props) && !this.loggedIn(nextProps)) {
+        // Shutdown and boot each time the user logs out to clear conversations
+        window.Intercom('shutdown');
+        window.Intercom('boot', otherProps);
+      } else {
+        window.Intercom('update', otherProps);
+      }
+    }
   }
 
   shouldComponentUpdate() {
@@ -88,12 +90,16 @@ export default class Intercom extends Component {
   }
 
   componentWillUnmount() {
-    if (!canUseDOM) return false;
-    clearInterval(this.pollIntercomId);
+    if (!canUseDOM || !window.Intercom) return false;
 
     window.Intercom('shutdown');
 
     delete window.Intercom;
+    delete window.intercomSettings;
+  }
+
+  loggedIn(props) {
+    return props.email || props.user_id;
   }
 
   render() {
