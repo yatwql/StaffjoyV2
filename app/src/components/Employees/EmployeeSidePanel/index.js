@@ -43,8 +43,8 @@ class EmployeeSidePanel extends React.Component {
     const { name } = event.target;
     const {
       companyUuid,
-      dispatch,
       employeeUuid,
+      dispatch,
       updateEmployeeField,
     } = this.props;
 

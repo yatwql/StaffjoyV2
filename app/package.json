@@ -64,7 +64,7 @@
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.26",
-    "normalizr": "^2.3.0",
+    "normalizr": "^3.4.0",
     "npm-zepto": "^1.1.7",
     "prop-types": "^15.7.2",
     "raven-js": "^3.27.2",
