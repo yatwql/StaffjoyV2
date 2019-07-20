@@ -1,6 +1,7 @@
 const path = require('path');
 
 // @TODO merge with existing webpack.config, many duplications
+// @see https://storybook.js.org/docs/configurations/custom-webpack-config/
 
 // Export a function. Accept the base config as the only param.
 module.exports = async ({ config, mode }) => {
