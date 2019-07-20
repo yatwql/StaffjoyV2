@@ -1,8 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { Router, Route, IndexRoute, hashHistory, IndexRedirect }
-  from 'react-router';
+import { Router, Route, IndexRoute, hashHistory, IndexRedirect } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import Raven from 'raven-js';
 import configureStore from 'stores/configureStore';
