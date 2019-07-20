@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { TwitterPicker } from 'react-color';
 import { Spinner } from 'react-mdl';
 import DeleteIcon from 'components/SVGs/DeleteIcon';

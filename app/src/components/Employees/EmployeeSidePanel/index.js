@@ -1,7 +1,9 @@
 import _ from 'lodash';
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
+import { bindActionCreators } from 'redux';
 import * as actions from 'actions';
 import EmployeePanelPhotoName from './PhotoName';
 import EmployeeFormField from './FormField';
@@ -16,15 +18,17 @@ class EmployeeSidePanel extends React.Component {
   }
 
   componentDidMount() {
-    const { dispatch, companyUuid, employeeUuid } = this.props;
+    const { dispatch } = this.props;
+    const { companyUuid, employeeUuid } = this.props.params;
 
     // get the employees for the whole company
     dispatch(actions.initializeEmployeeSidePanel(companyUuid, employeeUuid));
   }
 
   componentWillReceiveProps(nextProps) {
-    const { dispatch, companyUuid, employeeUuid } = this.props;
-    const newEmployeeUuid = nextProps.employeeUuid;
+    const { dispatch } = this.props;
+    const { companyUuid, employeeUuid } = this.props.params;
+    const newEmployeeUuid = nextProps.params.employeeUuid;
 
     // there are a lot of updates that will happen, but only need to fetch
     // if its because of a route change
@@ -123,14 +127,18 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-const mapDispatchToProps = dispatch => ({
-  updateEmployeeField: actions.updateEmployeeField,
-  dispatch,
-});
 
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators({
+    updateEmployeeField: actions.updateEmployeeField
+  }, dispatch);
+ };
+ 
 const Form = reduxForm({
   enableReinitialize: true,
   form: 'employee-side-panel',
 })(EmployeeSidePanel);
+
 const Container = connect(mapStateToProps, mapDispatchToProps)(Form);
+
 export default Container;
