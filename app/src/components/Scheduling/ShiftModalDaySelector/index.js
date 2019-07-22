@@ -1,7 +1,8 @@
 import _ from 'lodash';
 import $ from 'npm-zepto';
 import moment from 'moment';
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import {
   MOMENT_DATE_DISPLAY,
   MOMENT_ISO_DATE,

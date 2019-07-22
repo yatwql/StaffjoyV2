@@ -1,9 +1,10 @@
 import _ from 'lodash';
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { ProgressBar } from 'react-mdl';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
-import { ScaleModal } from 'boron';
+import { ScaleModal } from 'boron-15';
 
 import * as actions from '../../../actions';
 import createEmployee from '../../../validators/create-employee';
@@ -234,6 +235,10 @@ CreateEmployeeModal.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   reset: PropTypes.func.isRequired,
   submitSucceeded: PropTypes.bool.isRequired,
+};
+
+CreateEmployeeModal.defaultProps = {
+  createEmployeeFromForm: () => {}
 };
 
 function mapStateToProps(state) {

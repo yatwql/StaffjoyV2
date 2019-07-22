@@ -1,5 +1,6 @@
-import React, { PropTypes } from 'react';
-import { ScaleModal } from 'boron';
+import React from 'react';
+import PropTypes from 'prop-types';
+import { ScaleModal } from 'boron-15';
 
 require('./confirmation-modal.scss');
 

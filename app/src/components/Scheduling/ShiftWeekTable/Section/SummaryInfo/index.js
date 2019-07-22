@@ -1,7 +1,8 @@
 import _ from 'lodash';
 import moment from 'moment';
 import 'moment-timezone';
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { getFormattedDuration } from '../../../../../utility';
 
 require('./section-summary-info.scss');

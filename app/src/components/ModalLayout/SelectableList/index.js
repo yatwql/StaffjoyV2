@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import $ from 'npm-zepto';
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import ModalListSelectableItem from './SelectableItem';
 
 require('./selectable-modal-list.scss');
@@ -80,7 +81,7 @@ class SelectableModalList extends React.Component {
 
 SelectableModalList.propTypes = {
   error: PropTypes.string,
-  records: PropTypes.arrayOf(React.PropTypes.object),
+  records: PropTypes.arrayOf(PropTypes.object),
   displayByProperty: PropTypes.string.isRequired,
   selectedUuid: PropTypes.string,
   formCallback: PropTypes.func.isRequired,

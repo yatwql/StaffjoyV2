@@ -1,7 +1,8 @@
 import _ from 'lodash';
 import moment from 'moment';
-import React, { PropTypes } from 'react';
-import { ScaleModal } from 'boron';
+import React from 'react';
+import PropTypes from 'prop-types';
+import { ScaleModal } from 'boron-15';
 import TimeSelector from 'components/TimeSelector';
 import ShiftModalDaySelector from 'components/Scheduling/ShiftModalDaySelector';
 import { ModalLayoutRightSideColumn } from 'components/ModalLayout';

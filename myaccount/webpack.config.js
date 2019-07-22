@@ -1,7 +1,7 @@
 // for creating cache-safe files
 var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-var FaviconsWebpackPlugin = require('favicons-webpack-plugin');
+var WebappWebpackPlugin = require('webapp-webpack-plugin');
 
 // for cleanup of other builds
 var WebpackCleanupPlugin = require('webpack-cleanup-plugin');
@@ -65,7 +65,7 @@ module.exports = (env, options) => {
                 ]
               },
               {
-                test: /\.(png|jpe?g|gif)$/,
+                test: /\.(png|jpe?g|gif|svg)$/,
                 use: [
                   {
                     loader: 'file-loader',
@@ -88,7 +88,7 @@ module.exports = (env, options) => {
 
         resolve: {
             modules: [path.resolve('node_modules')],
-            extensions: ['*', '.js', '.jsx'],
+            extensions: ['.js', '.jsx'],
         },
 
         watchOptions: {
@@ -104,6 +104,7 @@ module.exports = (env, options) => {
             compress: true,
             contentBase: './dist',
             disableHostCheck: true,
+            historyApiFallback: true,
         },
         
         plugins: [
@@ -113,30 +114,28 @@ module.exports = (env, options) => {
                 inject: "body",
             }),
 
-            new FaviconsWebpackPlugin({
+            new WebappWebpackPlugin({
                 logo: './staffjoy-favicon.png',
                 prefix: 'assets/icons/',
-                emitStats: false,
-                // Inject the html into the html-webpack-plugin
+                cache: true,
                 inject: true,
-                // favicon background color
-                background: '#fff',
-                // favicon app title
-                title: 'Staffjoy | App',
-    
-                // which icons should be generated
-                icons: {
-                  android: true,
-                  appleIcon: true,
-                  appleStartup: true,
-                  coast: false,
-                  favicons: true,
-                  firefox: true,
-                  opengraph: true,
-                  twitter: true,
-                  yandex: false,
-                  windows: true
-                }
+                favicons: {
+                    background: '#fff',
+                    title: 'Staffjoy | My Account',
+
+                    icons: {
+                        android: true,
+                        appleIcon: true,
+                        appleStartup: true,
+                        coast: false,
+                        favicons: true,
+                        firefox: true,
+                        opengraph: true,
+                        twitter: true,
+                        yandex: false,
+                        windows: true
+                    },
+                },
             }),
             
             new WebpackCleanupPlugin({

@@ -1,7 +1,10 @@
 import _ from 'lodash';
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
+import { bindActionCreators } from 'redux';
 import * as actions from 'actions';
 import EmployeePanelPhotoName from './PhotoName';
 import EmployeeFormField from './FormField';
@@ -16,15 +19,17 @@ class EmployeeSidePanel extends React.Component {
   }
 
   componentDidMount() {
-    const { dispatch, companyUuid, employeeUuid } = this.props;
+    const { dispatch } = this.props;
+    const { companyUuid, employeeUuid } = this.props.match.params;
 
     // get the employees for the whole company
     dispatch(actions.initializeEmployeeSidePanel(companyUuid, employeeUuid));
   }
 
   componentWillReceiveProps(nextProps) {
-    const { dispatch, companyUuid, employeeUuid } = this.props;
-    const newEmployeeUuid = nextProps.employeeUuid;
+    const { dispatch } = this.props;
+    const { companyUuid, employeeUuid } = this.props.match.params;
+    const newEmployeeUuid = nextProps.match.params.employeeUuid;
 
     // there are a lot of updates that will happen, but only need to fetch
     // if its because of a route change
@@ -39,8 +44,8 @@ class EmployeeSidePanel extends React.Component {
     const { name } = event.target;
     const {
       companyUuid,
-      dispatch,
       employeeUuid,
+      dispatch,
       updateEmployeeField,
     } = this.props;
 
@@ -105,7 +110,7 @@ EmployeeSidePanel.propTypes = {
 };
 
 function mapStateToProps(state, ownProps) {
-  const employeeUuid = ownProps.routeParams.employeeUuid;
+  const employeeUuid = ownProps.match.params.employeeUuid;
   const employee = _.get(state.employees.data, employeeUuid, {});
   const updatingFields = _.get(
     state.employees.updatingFields,
@@ -115,7 +120,7 @@ function mapStateToProps(state, ownProps) {
   const initialValues = employee;
 
   return {
-    companyUuid: ownProps.routeParams.companyUuid,
+    companyUuid: ownProps.match.params.companyUuid,
     employee,
     employeeUuid,
     initialValues,
@@ -123,14 +128,18 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-const mapDispatchToProps = dispatch => ({
-  updateEmployeeField: actions.updateEmployeeField,
-  dispatch,
-});
 
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators({
+    updateEmployeeField: actions.updateEmployeeField
+  }, dispatch);
+ };
+ 
 const Form = reduxForm({
   enableReinitialize: true,
   form: 'employee-side-panel',
 })(EmployeeSidePanel);
+
 const Container = connect(mapStateToProps, mapDispatchToProps)(Form);
-export default Container;
+
+export default withRouter(Container);

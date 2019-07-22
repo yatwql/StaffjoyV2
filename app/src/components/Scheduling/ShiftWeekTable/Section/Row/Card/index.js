@@ -1,8 +1,9 @@
 import _ from 'lodash';
-import React, { PropTypes } from 'react';
-import { Link } from 'react-router';
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { DragSource as dragSource, DropTarget as dropTarget } from 'react-dnd';
-import { ScaleModal } from 'boron';
+import { ScaleModal } from 'boron-15';
 import moment from 'moment';
 import 'moment-timezone';
 import classNames from 'classnames';
