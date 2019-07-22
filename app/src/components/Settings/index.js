@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from 'actions';
 import * as constants from 'constants/constants';
@@ -338,7 +339,7 @@ Settings.propTypes = {
 };
 
 function mapStateToProps(state, ownProps) {
-  const teamUuid = ownProps.routeParams.teamUuid;
+  const teamUuid = ownProps.match.params.teamUuid;
 
   // consts for team data
   const team = _.get(state.teams.data, teamUuid, {});
@@ -363,7 +364,7 @@ function mapStateToProps(state, ownProps) {
   const isFetching = isTeamFetching || isJobFetching;
 
   return {
-    companyUuid: ownProps.routeParams.companyUuid,
+    companyUuid: ownProps.match.params.companyUuid,
     teamUuid,
     team,
     jobs,
@@ -403,7 +404,9 @@ const mapDispatchToProps = dispatch => ({
   },
 });
 
-export default connect(
+const ConnectedComponent = connect(
   mapStateToProps,
   mapDispatchToProps,
 )(Settings);
+
+export default withRouter(ConnectedComponent);

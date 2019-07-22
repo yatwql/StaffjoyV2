@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Drawer, Navigation } from 'react-mdl';
 import { companyNavLinks } from 'constants/sideNavigation';
@@ -81,7 +81,7 @@ function mapStateToProps(state) {
   );
 
   return {
-    currentPath: state.routing.locationBeforeTransitions.pathname,
+    currentPath: state.router.location.pathname,
     userName: _.get(userData, 'name', ''),
     userPhotoUrl: _.get(userData, 'photo_url', ''),
     companyName,

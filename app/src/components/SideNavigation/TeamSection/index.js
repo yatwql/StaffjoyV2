@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import { teamNavLinks } from 'constants/sideNavigation';
 import * as paths from 'constants/paths';
 import { NO_TRANSPARENCY } from 'constants/config';

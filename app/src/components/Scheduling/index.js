@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { DragDropContext as dragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
@@ -186,7 +187,7 @@ Scheduling.propTypes = {
 };
 
 function mapStateToProps(state, ownProps) {
-  const teamUuid = ownProps.routeParams.teamUuid;
+  const teamUuid = ownProps.match.params.teamUuid;
 
   // consts for team data
   const teamData = _.get(state.teams.data, teamUuid, {});
@@ -228,7 +229,7 @@ function mapStateToProps(state, ownProps) {
     isShiftSaving;
 
   return {
-    companyUuid: ownProps.routeParams.companyUuid,
+    companyUuid: ownProps.match.params.companyUuid,
     routeQuery: ownProps.location.query,
     isFetching,
     isSaving,
@@ -250,12 +251,12 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   },
   changeViewBy: (event) => {
     const newView = $(event.target).data('id');
-    const { teamUuid } = ownProps.routeParams;
+    const { teamUuid } = ownProps.match.params;
 
     dispatch(actions.changeViewBy(newView, teamUuid));
   },
   stepDateRange: (event) => {
-    const { companyUuid, teamUuid } = ownProps.routeParams;
+    const { companyUuid, teamUuid } = ownProps.match.params;
     const direction = $(event.target)
       .closest('.square-button')
       .data('direction');
@@ -263,7 +264,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     dispatch(actions.stepDateRange(companyUuid, teamUuid, direction));
   },
   droppedSchedulingCard: (shiftUuid, oldColumnId, sectionUuid, newColumnId) => {
-    const { companyUuid, teamUuid } = ownProps.routeParams;
+    const { companyUuid, teamUuid } = ownProps.match.params;
 
     dispatch(actions.droppedSchedulingCard(
       companyUuid,
@@ -275,7 +276,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     ));
   },
   editTeamShift: (shiftUuid, timezone) => {
-    const { companyUuid, teamUuid } = ownProps.routeParams;
+    const { companyUuid, teamUuid } = ownProps.match.params;
 
     dispatch(actions.editTeamShiftFromModal(
       companyUuid,
@@ -285,18 +286,18 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     ));
   },
   createTeamShift: (timezone) => {
-    const { companyUuid, teamUuid } = ownProps.routeParams;
+    const { companyUuid, teamUuid } = ownProps.match.params;
     dispatch(
       actions.createTeamShiftsFromModal(companyUuid, teamUuid, timezone)
     );
   },
   deleteTeamShift: (shiftUuid) => {
-    const { companyUuid, teamUuid } = ownProps.routeParams;
+    const { companyUuid, teamUuid } = ownProps.match.params;
 
     dispatch(actions.deleteTeamShift(companyUuid, teamUuid, shiftUuid));
   },
   publishTeamShifts: () => {
-    const { companyUuid, teamUuid } = ownProps.routeParams;
+    const { companyUuid, teamUuid } = ownProps.match.params;
 
     dispatch(actions.publishTeamShifts(companyUuid, teamUuid));
   },
@@ -310,7 +311,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     dispatch(actions.clearSchedulingModalFormData(data));
   },
   handleCardZAxisChange: ({ key, shiftUuid, value }) => {
-    const { companyUuid, teamUuid } = ownProps.routeParams;
+    const { companyUuid, teamUuid } = ownProps.match.params;
     const newData = { [key]: value };
 
     dispatch(actions.updateTeamShift(
@@ -323,7 +324,9 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   dispatch,
 });
 
-export default connect(
+const ConnectedComponent = connect(
   mapStateToProps,
   mapDispatchToProps
 )(dragDropContext(HTML5Backend)(Scheduling));
+
+export default withRouter(ConnectedComponent);

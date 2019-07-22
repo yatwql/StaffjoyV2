@@ -1,10 +1,13 @@
 import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
+import { matchPath } from 'react-router';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Layout, Content } from 'react-mdl';
 import NavigationSide from 'components/SideNavigation';
 import Intercom from 'components/Intercom';
+import * as paths from 'constants/paths';
 import * as actions from 'actions';
 
 require('./app.scss');
@@ -57,10 +60,45 @@ App.propTypes = {
 };
 
 function mapStateToProps(state, ownProps) {
+  // @TODO is there a cleaner way? to get it via ownProps
+  // ownProps.match.params = [] - always for some reason.
+  const match = matchPath(location.pathname, { 
+    path: paths.getRoute(paths.COMPANY_EMPLOYEES),
+    exact: true,
+    strict: false
+  }) || matchPath(location.pathname, { 
+    path: paths.getRoute(paths.COMPANY_EMPLOYEE),
+    exact: true,
+    strict: false
+  }) || matchPath(location.pathname, { 
+    path: paths.getRoute(paths.COMPANY_HISTORY),
+    exact: true,
+    strict: false
+  }) || matchPath(location.pathname, { 
+    path: paths.getRoute(paths.TEAM_SCHEDULING),
+    exact: true,
+    strict: false
+  }) || matchPath(location.pathname, { 
+    path: paths.getRoute(paths.TEAM_SETTINGS),
+    exact: true,
+    strict: false
+  })
+  ;
+  
+  let companyUuid = null;
+  try {
+    companyUuid = match.params.companyUuid;
+  } catch(e) {
+    // err?
+  }
+
+
+  
   return {
-    companyUuid: ownProps.routeParams.companyUuid,
+    companyUuid,
     intercomSettings: state.whoami.intercomSettings,
   };
 }
 
-export default connect(mapStateToProps)(App);
+const ConnectedComponent = connect(mapStateToProps)(App);
+export default withRouter(ConnectedComponent);
