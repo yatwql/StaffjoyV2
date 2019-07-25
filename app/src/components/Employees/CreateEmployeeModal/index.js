@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ProgressBar } from 'react-mdl';
+import { LinearProgress } from '@rmwc/linear-progress';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { ScaleModal } from 'boron-15';
@@ -18,13 +18,15 @@ require('./create-employee-modal.scss');
 const EMPTY_OBJECT = Object.freeze({});
 
 // Adapter for redux-form. Add your prop - do not use spread operator.
-function TextField({ disabled, input, label, meta, name, width }) {
+function TextField({ disabled, input, label, meta, name, width, fullwidth, required }) {
+  // helpText={meta.error}
   return (
     <StaffjoyTextField
       disabled={disabled}
-      error={meta.error}
+      required={required}
       label={label}
       name={name}
+      fullwidth={fullwidth}
       width={width}
       onChange={input.onChange}
       onBlur={input.onBlur}
@@ -34,11 +36,13 @@ function TextField({ disabled, input, label, meta, name, width }) {
 
 TextField.propTypes = {
   disabled: PropTypes.bool,
+  required: PropTypes.bool,
   input: PropTypes.object,
   label: PropTypes.string,
   meta: PropTypes.object,
   name: PropTypes.string,
-  width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  width: PropTypes.string,
+  fullwidth: PropTypes.bool,
 };
 
 // Adapter for redux-form.
@@ -149,7 +153,7 @@ class CreateEmployeeModal extends React.Component {
 
     let progressBar;
     if (submitting) {
-      progressBar = <ProgressBar indeterminate />;
+      progressBar = <LinearProgress />;
     }
 
     const createButton = (
@@ -169,21 +173,24 @@ class CreateEmployeeModal extends React.Component {
           disabled={submitting}
           label="Full Name"
           name="full_name"
-          width="full"
+          width="100%"
+          required={true}
         />
         <Field
           component={TextField}
           disabled={submitting}
           label="Email"
           name="email"
-          width="full"
+          width="100%"
+          required={true}
         />
         <Field
           component={TextField}
           disabled={submitting}
           label="Phone"
           name="phonenumber"
-          width="full"
+          width="100%"
+          required={true}
         />
       </form>
     );
@@ -260,5 +267,7 @@ const Form = reduxForm({
   form: 'create-employee',
   validate: createEmployee,
 })(CreateEmployeeModal);
+
 const Container = connect(mapStateToProps, mapDisatchToProps)(Form);
+
 export default Container;

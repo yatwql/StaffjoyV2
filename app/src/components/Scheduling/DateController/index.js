@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
+import { Grid, GridInner, GridCell } from '@rmwc/grid';
 import 'moment-timezone';
 import momentPropTypes from 'react-moment-proptypes';
 
@@ -43,26 +44,37 @@ class SchedulingDateController extends React.Component {
       .format(MOMENT_CALENDAR_END_DISPLAY);
 
     return (
-      <div className="scheduling-date-controls-container mdl-grid">
-        <div className="date-buttons mdl-cell-3-col">
-          <SquareButton
-            name="chevron_left"
-            onClick={stepDateRange}
-            data-direction="left"
-            disabled={disabled}
-          />
-          <SquareButton
-            name="chevron_right"
-            onClick={stepDateRange}
-            data-direction="right"
-            disabled={disabled}
-          />
-        </div>
-        <div className="time-displays mdl-cell-9-col">
-          <div className="date-range">{startDisplay} - {stopDisplay}</div>
-          <div className="current-time">{time}</div>
-        </div>
-      </div>
+      <Grid>
+        <GridInner 
+          className="scheduling-date-controls-container"
+        >
+          <GridCell 
+            span={3}
+          >
+            <SquareButton
+              name="left"
+              icon="chevron_left"
+              onClick={stepDateRange}
+              data-direction="left"
+              disabled={disabled}
+            />
+            <SquareButton
+              name="right"
+              icon="chevron_right"
+              onClick={stepDateRange}
+              data-direction="right"
+              disabled={disabled}
+            />
+          </GridCell>
+          <GridCell
+            span={9}
+            className="time-displays"
+          >
+            <div className="date-range">{startDisplay} - {stopDisplay}</div>
+            <div className="current-time">{time}</div>
+          </GridCell>
+        </GridInner>
+      </Grid>
     );
   }
 }

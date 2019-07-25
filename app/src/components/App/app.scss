@@ -1,11 +1,49 @@
-.mdl-layout--fixed-drawer {
-  >.mdl-layout__inner-container {
-    >.mdl-layout__content {
-      margin-left: 200px !important;
+@import "@material/list/mdc-list";
+@import "@material/grid-list/mdc-grid-list";
+@import "@material/layout-grid/mdc-layout-grid";
+@import "@material/floating-label/mdc-floating-label";
+@import "@material/textfield/mdc-text-field";
+@import "@material/icon-button/mdc-icon-button";
+@import "@material/button/mdc-button";
+@import "@material/drawer/mdc-drawer";
+@import "@material/linear-progress/mdc-linear-progress";
+@import "@material/menu-surface/mdc-menu-surface";
+@import "@material/menu/mdc-menu";
+@import "~@rmwc/circular-progress/circular-progress";
 
-      @media (max-width: 1024px) {
-        margin-left: 0 !important;
-      }
-    }
-  }
+@import "@material/theme/mdc-theme";
+@import "@material/theme/mixins";
+
+
+:root {
+  --mdc-theme-background: red;
+  --mdc-theme-surface: rgb(250,250,250);
+  --mdc-theme-primary: #48B7AB;
+  --mdc-theme-secondary: #48B7AB;
+  --mdc-theme-on-primary: #48B7AB;
+  --mdc-theme-on-secondary: #48B7AB;
+  --mdc-layout-grid-gutter-desktop: 0;
+  --mdc-layout-grid-margin-desktop: 0;
+  --mdc-layout-grid-gutter-tablet: 0;
+  --mdc-layout-grid-gutter-phone: 0;
+}
+
+.mdc-drawer {
+  width: 200px !important;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 
+    0 3px 1px -2px rgba(0, 0, 0, 0.2),
+    0 1px 5px 0 rgba(0, 0, 0, 0.12);
+  position: relative;
+}
+
+.drawer-container {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  overflow: hidden;
+}
+ 
+.drawer-app-content {
+  flex: auto;
+  overflow: hidden;
 }

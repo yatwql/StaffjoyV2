@@ -4,13 +4,15 @@ import PropTypes from 'prop-types';
 import { matchPath } from 'react-router';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { Layout, Content } from 'react-mdl';
 import NavigationSide from 'components/SideNavigation';
 import Intercom from 'components/Intercom';
 import * as paths from 'constants/paths';
 import * as actions from 'actions';
 
+import Drawer, { DrawerContent, DrawerAppContent } from '@rmwc/drawer';
+
 require('./app.scss');
+
 
 class App extends React.Component {
   componentDidMount() {
@@ -36,18 +38,20 @@ class App extends React.Component {
     const { children, companyUuid, intercomSettings } = this.props;
 
     return (
-      <Layout fixedDrawer>
+      <div className='drawer-container'>
         <NavigationSide companyUuid={companyUuid} />
-        <Content>
+
+        <DrawerAppContent className='drawer-app-content'>
           {children}
-        </Content>
+        </DrawerAppContent>
+
         {!_.isEmpty(intercomSettings)
         &&
-        <Intercom
-          {...intercomSettings}
-          appID={intercomSettings.app_id}
-        />}
-      </Layout>
+          <Intercom
+            {...intercomSettings}
+            appID={intercomSettings.app_id}
+          />}
+      </div>
     );
   }
 }

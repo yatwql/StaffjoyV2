@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { TwitterPicker } from 'react-color';
-import { Spinner } from 'react-mdl';
+import { CircularProgress } from '@rmwc/circular-progress';
 import DeleteIcon from 'components/SVGs/DeleteIcon';
 import * as constants from 'constants/constants';
 
@@ -48,7 +48,7 @@ export default class JobRow extends React.Component {
           {
             jobFieldsSaving.includes(job.uuid)
             &&
-            <Spinner singleColor />
+            <CircularProgress size="xsmall" />
           }
           {
             jobFieldsShowSuccess.includes(job.uuid)
