@@ -5,6 +5,8 @@ import { CircularProgress } from '@rmwc/circular-progress';
 import DeleteIcon from 'components/SVGs/DeleteIcon';
 import * as constants from 'constants/constants';
 
+import { DataTableRow, DataTableCell } from '@rmwc/data-table';
+
 require('./job-row.scss');
 
 export default class JobRow extends React.Component {
@@ -30,11 +32,11 @@ export default class JobRow extends React.Component {
     } = this.props;
 
     return (
-      <tr
+      <DataTableRow
         key={`table-row-${job.uuid}`}
         className="table-row-job"
       >
-        <td
+        <DataTableCell
           className="job-name-cell"
         >
           <input
@@ -60,8 +62,8 @@ export default class JobRow extends React.Component {
               <span>Saved!</span>
             </div>
           }
-        </td>
-        <td
+        </DataTableCell>
+        <DataTableCell
           className="job-color-cell"
         >
           <div
@@ -90,16 +92,16 @@ export default class JobRow extends React.Component {
               </div>
             }
           </div>
-        </td>
-        <td className="job-delete-cell">
+        </DataTableCell>
+        <DataTableCell className="job-delete-cell">
           <DeleteIcon
             fill="#666666"
             width="25"
             height="25"
             onClick={() => { handleShowModalClick(job.uuid); }}
           />
-        </td>
-      </tr>
+        </DataTableCell>
+      </DataTableRow>
     );
   }
 }

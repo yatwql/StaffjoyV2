@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { formatPhoneNumber } from 'utility';
 
+import { DataTableCell } from '@rmwc/data-table';
+
 require('./contact-info.scss');
 
 function TableContactInfo({ email, phoneNumber }) {
@@ -16,7 +18,11 @@ function TableContactInfo({ email, phoneNumber }) {
   });
 
   return (
-    <td className={labelClasses} >{value}</td>
+    <DataTableCell
+      className={labelClasses}
+    >
+      {value}
+    </DataTableCell>
   );
 }
 

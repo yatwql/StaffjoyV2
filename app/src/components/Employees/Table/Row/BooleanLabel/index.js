@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { DataTableCell } from '@rmwc/data-table';
 
 require('./table-boolean-label.scss');
 
@@ -12,9 +13,9 @@ function TableBooleanLabel({ booleanField, callback }) {
   });
 
   return (
-    <td className={labelClasses} >
+    <DataTableCell className={labelClasses} >
       {callback(booleanField)}
-    </td>
+    </DataTableCell>
   );
 }
 

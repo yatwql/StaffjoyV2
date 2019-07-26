@@ -34,7 +34,6 @@ function NavigationSide({
           _.map(companyNavLinks, (link) => {
             const route = paths.getRoute(link.pathName, { companyUuid });
 
-            // 'mdl-navigation__link' is automatically added to all links
             const activated = (currentPath === route) ? true : false;
 
             return (
