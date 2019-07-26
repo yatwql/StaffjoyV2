@@ -105,4 +105,5 @@ function mapStateToProps(state, ownProps) {
 }
 
 const ConnectedComponent = connect(mapStateToProps)(App);
+
 export default withRouter(ConnectedComponent);

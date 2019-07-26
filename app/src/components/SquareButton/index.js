@@ -6,15 +6,9 @@ require('./square-button.scss');
 
 const styles = {
   button: {
-      width: 32, height: 32,
+      width: 32,
+      height: 32,
       padding: 0
-  },
-  icon: {
-      fontSize:22,
-      color:'#fffff'
-  },
-  tooltip: {
-      marginLeft:7
   }
 };
 
@@ -22,7 +16,7 @@ function SquareButton({ name, onClick, ...otherProps }) {
   return (
     <IconButton 
       name={name}
-      style={styles.button} iconStyle={styles.icon} tooltipStyles={styles.tooltip}
+      style={styles.button}
       className="square-button"
       onClick={onClick}
       {...otherProps}

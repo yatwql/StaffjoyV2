@@ -27,7 +27,11 @@ function SearchField({
     <div className={ classes } style={{ width }}>
       <TextField 
         icon="search" 
-        trailingIcon="close" 
+        trailingIcon={{
+          icon: 'close',
+          tabIndex: 0,
+          onClick: () => setSearchInput('')
+        }}
         placeholder="Search" 
         className="SearchField-mdc-text-field"
         onChange={ onChangeHandle }

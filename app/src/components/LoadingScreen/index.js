@@ -11,7 +11,7 @@ function LoadingScreen({ containerProps = {} }) {
   return (
     <div className="loading-container" {...containerProps}>
       <img role="presentation" alt="Staffjoy logo" src={imgUrl} />
-      <CircularProgress size="xsmall" />
+      <CircularProgress size="small" />
     </div>
   );
 }

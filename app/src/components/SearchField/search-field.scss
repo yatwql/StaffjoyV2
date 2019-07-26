@@ -8,8 +8,16 @@
     height: 32px;
     background-color: transparent !important;
 
+    .mdc-text-field__icon {
+      left: 11px;
+    }
+
     i {
       bottom: 5px;
+    }
+
+    input {
+      padding: 0 40px 0 !important;
     }
 
     &::before, &::after {
