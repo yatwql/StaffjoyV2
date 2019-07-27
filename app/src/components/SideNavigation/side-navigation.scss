@@ -1,7 +1,7 @@
 @import "../../../../frontend_resources/scss/colors";
 
 .mdc-drawer {
-  background-color: $mdc-theme-background !important; // for some reason, theme settings do not use these. manually overriding.
+  background-color: $staffjoy-palette-drawer-bg !important; // for some reason, theme settings do not use these. manually overriding.
 
   > .mdc-list {
     .mdc-list-item {
