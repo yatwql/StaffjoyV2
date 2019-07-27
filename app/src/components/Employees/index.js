@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -14,7 +14,7 @@ import * as rowTypes from './Table/Row/rowTypes';
 
 require('./employees.scss');
 
-class Employees extends React.Component {
+class Employees extends Component {
   componentDidMount() {
     const { dispatch } = this.props;
 

@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import moment from 'moment';
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { ScaleModal } from 'boron-15';
 import TimeSelector from 'components/TimeSelector';
@@ -11,7 +11,7 @@ import StaffjoyButton from 'components/StaffjoyButton';
 import { MOMENT_SHIFT_CARD_TIMES } from 'constants/config';
 import { UNASSIGNED_SHIFTS } from 'constants/constants';
 
-class CreateShiftModal extends React.Component {
+class CreateShiftModal extends Component {
 
   constructor(props) {
     super(props);

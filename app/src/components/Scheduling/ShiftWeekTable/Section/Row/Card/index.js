@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { DragSource as dragSource, DropTarget as dropTarget } from 'react-dnd';
@@ -28,7 +28,7 @@ const unassignedShiftPhoto = require(
   '../../../../../../../../frontend_resources/images/unassigned_shift_icon.png'
 );
 
-class ShiftWeekTableCard extends React.Component {
+class ShiftWeekTableCard extends Component {
 
   constructor(props) {
     super(props);

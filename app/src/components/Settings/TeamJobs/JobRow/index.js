@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { TwitterPicker } from 'react-color';
 import { CircularProgress } from '@rmwc/circular-progress';
@@ -9,7 +9,7 @@ import { DataTableRow, DataTableCell } from '@rmwc/data-table';
 
 require('./job-row.scss');
 
-export default class JobRow extends React.Component {
+export default class JobRow extends Component {
 
   componentDidMount() {
     if (this.props.isNewJob) {

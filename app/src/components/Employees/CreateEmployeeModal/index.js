@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { LinearProgress } from '@rmwc/linear-progress';
 import { connect } from 'react-redux';
@@ -84,7 +84,7 @@ SelectableList.propTypes = {
   uuidKey: PropTypes.string,
 };
 
-class CreateEmployeeModal extends React.Component {
+class CreateEmployeeModal extends Component {
 
   constructor(props) {
     super(props);

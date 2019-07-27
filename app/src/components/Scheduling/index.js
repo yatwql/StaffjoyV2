@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -17,7 +17,7 @@ import CreateShiftModal from './CreateShiftModal';
 
 require('./scheduling.scss');
 
-class Scheduling extends React.Component {
+class Scheduling extends Component {
 
   componentDidMount() {
     const { dispatch, companyUuid, teamUuid, routeQuery } = this.props;

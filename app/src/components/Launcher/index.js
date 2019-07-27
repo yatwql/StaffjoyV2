@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -14,7 +14,7 @@ import {
 
 require('./launcher.scss');
 
-class Launcher extends React.Component {
+class Launcher extends Component {
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch(actions.getWhoAmI());

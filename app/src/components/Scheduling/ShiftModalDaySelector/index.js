@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import $ from 'npm-zepto';
 import moment from 'moment';
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
   MOMENT_DATE_DISPLAY,
@@ -12,7 +12,7 @@ import ShiftModalDayCell from './DayCell';
 
 require('./shift-modal-day-selector.scss');
 
-class ShiftModalDaySelector extends React.Component {
+class ShiftModalDaySelector extends Component {
 
   constructor(props) {
     super(props);

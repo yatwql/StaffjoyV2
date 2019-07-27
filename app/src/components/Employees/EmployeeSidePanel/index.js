@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -11,7 +11,7 @@ import EmployeeFormField from './FormField';
 
 require('./employee-side-panel.scss');
 
-class EmployeeSidePanel extends React.Component {
+class EmployeeSidePanel extends Component {
 
   constructor(props) {
     super(props);

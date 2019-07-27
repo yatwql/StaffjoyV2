@@ -1,12 +1,12 @@
 import _ from 'lodash';
 import $ from 'npm-zepto';
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ModalListSelectableItem from './SelectableItem';
 
 require('./selectable-modal-list.scss');
 
-class SelectableModalList extends React.Component {
+class SelectableModalList extends Component {
 
   constructor(props) {
     super(props);
