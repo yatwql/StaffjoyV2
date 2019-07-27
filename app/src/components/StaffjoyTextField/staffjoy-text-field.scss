@@ -1,19 +1,8 @@
 
 .staffjoy-text-field {
-    height: 44px;
     background-color: transparent !important;
 
     &::before, &::after, &:hover, input {
         background-color: transparent !important;
-    }
-
-    .mdc-floating-label {
-        top: 12px;
-        left: 2px;
-    }
-
-    input {
-        padding: 2px 0;
-        height: 28px;
     }
 }

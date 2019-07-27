@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { Drawer, DrawerTitle } from '@rmwc/drawer';
+import { Drawer } from '@rmwc/drawer';
 import { List, SimpleListItem } from '@rmwc/list';
 import Icon from '@rmwc/icon';
 import { companyNavLinks } from 'constants/sideNavigation';
@@ -25,9 +25,7 @@ function NavigationSide({
 }) {
   return (
     <Drawer>
-      <DrawerTitle tag='h2'>
-        <NavigationLogo companyUuid={companyUuid} />
-      </DrawerTitle>
+      <NavigationLogo companyUuid={companyUuid} />
 
       <List>
         {
@@ -40,7 +38,6 @@ function NavigationSide({
               <Link to={route} style={{ textDecoration: 'none' }} key={link.pathName}>
                 <SimpleListItem
                   activated={activated}
-                  graphic="star"
                   text={link.displayName}
                 />
               </Link>

@@ -30,7 +30,10 @@ function SearchField({
         trailingIcon={{
           icon: 'close',
           tabIndex: 0,
-          onClick: () => setSearchInput('')
+          onClick: (e) => {
+            setSearchInput('');
+            onChange(e);
+          }
         }}
         placeholder="Search" 
         className="SearchField-mdc-text-field"

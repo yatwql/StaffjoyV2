@@ -182,7 +182,6 @@ class CreateEmployeeModal extends React.Component {
           label="Email"
           name="email"
           width="100%"
-          required={true}
         />
         <Field
           component={TextField}
@@ -190,7 +189,6 @@ class CreateEmployeeModal extends React.Component {
           label="Phone"
           name="phonenumber"
           width="100%"
-          required={true}
         />
       </form>
     );

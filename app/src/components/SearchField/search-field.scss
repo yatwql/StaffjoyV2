@@ -1,7 +1,7 @@
 @import "../../../../frontend_resources/scss/colors";
 .search-container {
   &.dark-container {
-    background-color: white;
+    background-color: $pure-white;
   }
 
   .SearchField-mdc-text-field {
