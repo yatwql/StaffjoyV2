@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import { Grid, GridInner, GridCell } from '@rmwc/grid';
@@ -14,7 +14,7 @@ import {
 
 require('./scheduling-date-controller.scss');
 
-class SchedulingDateController extends React.Component {
+class SchedulingDateController extends Component {
 
   componentWillMount() {
     this.setTime();

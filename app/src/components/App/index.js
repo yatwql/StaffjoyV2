@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { matchPath } from 'react-router';
 import { withRouter } from 'react-router-dom';
@@ -14,7 +14,7 @@ import Drawer, { DrawerContent, DrawerAppContent } from '@rmwc/drawer';
 require('./app.scss');
 
 
-class App extends React.Component {
+class App extends Component {
   componentDidMount() {
     const { dispatch, companyUuid } = this.props;
 

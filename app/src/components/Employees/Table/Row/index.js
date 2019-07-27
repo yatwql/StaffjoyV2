@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import { DataTableRow, DataTableCell } from '@rmwc/data-table';
@@ -9,7 +9,7 @@ import TableContactInfo from './ContactInfo';
 import TablePhotoName from './PhotoName';
 import TableBooleanLabel from './BooleanLabel';
 
-class TableRow extends React.Component {
+class TableRow extends Component {
 
   constructor(props) {
     super(props);

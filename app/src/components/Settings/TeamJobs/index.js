@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import PlusIcon from 'components/SVGs/PlusIcon';
 import TableHeader from './TableHeader';
@@ -9,7 +9,7 @@ import { DataTable, DataTableContent, DataTableBody, DataTableRow, DataTableCell
 
 require('./team-jobs.scss');
 
-export default class TeamJobs extends React.Component {
+export default class TeamJobs extends Component {
 
   getQueriedJobs() {
     const {

@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import moment from 'moment';
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
   MOMENT_DAY_DATE_DISPLAY,
@@ -20,8 +20,7 @@ const unassignedShiftPhoto = require(
 
 require('./shift-week-table.scss');
 
-
-class ShiftWeekTable extends React.Component {
+class ShiftWeekTable extends Component {
 
   organizeShiftsIntoSections() {
     const { viewBy } = this.props;

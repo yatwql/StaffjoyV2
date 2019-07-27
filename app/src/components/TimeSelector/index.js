@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import moment from 'moment';
 import $ from 'npm-zepto';
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import StaffjoyButton from 'components/StaffjoyButton';
 import StaffjoyTextField from 'components/StaffjoyTextField';
@@ -14,7 +14,7 @@ import TimeSelectorNumberButton from './NumberButton';
 
 require('./time-selector.scss');
 
-class TimeSelector extends React.Component {
+class TimeSelector extends Component {
 
   constructor(props) {
     const startMoment = moment.utc(props.start, API_TIME_FORMAT)

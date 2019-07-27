@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -13,7 +13,7 @@ import TeamJobs from './TeamJobs';
 
 require('./settings.scss');
 
-class Settings extends React.Component {
+class Settings extends Component {
   constructor(props) {
     super(props);
 

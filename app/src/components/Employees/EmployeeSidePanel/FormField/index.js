@@ -1,12 +1,12 @@
 import classNames from 'classnames';
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { CircularProgress } from '@rmwc/circular-progress';
 import * as fieldUpdateStatus from 'constants/fieldUpdateStatus';
 
 require('./employee-form-field.scss');
 
-class EmployeeFormField extends React.Component {
+class EmployeeFormField extends Component {
 
   constructor(props) {
     super(props);
