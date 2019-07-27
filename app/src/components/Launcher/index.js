@@ -56,16 +56,16 @@ class Launcher extends React.Component {
     }
 
     return (
-      <ul className="company-launcher mdl-list">
+      <ul className="company-launcher">
         {_.map(companies, (company) => {
           const route = getRoute(COMPANY_BASE, { companyUuid: company.uuid });
           const liKey = `launcher-li-${company.uuid}`;
           const linkKey = `launcher-a-${company.uuid}`;
           return (
-            <li className="mdl-list__item" key={liKey}>
+            <li className="list__item" key={liKey}>
               <Link
                 key={linkKey}
-                className="mdl-list__item-primary-content company"
+                className="company"
                 to={route}
               >
                 {company.name}

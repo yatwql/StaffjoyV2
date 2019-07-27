@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Spinner } from 'react-mdl';
+import { CircularProgress } from '@rmwc/circular-progress';
 import * as fieldUpdateStatus from 'constants/fieldUpdateStatus';
 
 require('./employee-form-field.scss');
@@ -59,9 +59,9 @@ class EmployeeFormField extends React.Component {
       );
     }
 
-    let spinner;
+    let progress;
     if (updateStatus === fieldUpdateStatus.UPDATING) {
-      spinner = <Spinner singleColor />;
+      progress = <CircularProgress size="xsmall" />;
     }
 
     let success;
@@ -86,7 +86,7 @@ class EmployeeFormField extends React.Component {
       <div className={className}>
         {icon}
         {inputElement}
-        {spinner}
+        {progress}
         {success}
       </div>
     );

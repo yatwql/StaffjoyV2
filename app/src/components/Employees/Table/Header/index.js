@@ -2,13 +2,14 @@ import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { DataTableHead, DataTableRow, DataTableHeadCell } from '@rmwc/data-table';
 
 require('./table-header.scss');
 
 function TableHeader({ columns }) {
   return (
-    <thead>
-      <tr>
+    <DataTableHead>
+      <DataTableRow>
         {
           _.map(columns, (column) => {
             const classes = classNames({
@@ -18,13 +19,14 @@ function TableHeader({ columns }) {
             const key = `col-header-${column.columnId}`;
 
             return (
-              <th key={key} className={classes}>
+              <DataTableHeadCell key={key} className={classes}>
                 {column.displayName}
-              </th>);
+              </DataTableHeadCell>
+            );
           })
         }
-      </tr>
-    </thead>
+      </DataTableRow>
+    </DataTableHead>
   );
 }
 

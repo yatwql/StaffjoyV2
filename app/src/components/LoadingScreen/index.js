@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Spinner } from 'react-mdl';
+import { CircularProgress } from '@rmwc/circular-progress';
 
 require('./loading-screen.scss');
 const imgUrl = require(
@@ -11,7 +11,7 @@ function LoadingScreen({ containerProps = {} }) {
   return (
     <div className="loading-container" {...containerProps}>
       <img role="presentation" alt="Staffjoy logo" src={imgUrl} />
-      <Spinner singleColor />
+      <CircularProgress size="small" />
     </div>
   );
 }

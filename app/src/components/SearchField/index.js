@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Textfield } from 'react-mdl';
+import { TextField } from '@rmwc/textfield';
 import classNames from 'classnames';
 
 require('./search-field.scss');
@@ -11,19 +11,35 @@ function SearchField({
   darkBackground,
   disabled = false,
 }) {
+  const [searchInput, setSearchInput] = useState('');
+
   const classes = classNames({
     'search-container': true,
     'dark-container': darkBackground,
   });
 
+  const onChangeHandle = (e) => {
+    setSearchInput(e.currentTarget.value);
+    onChange(e);
+  }
+
   return (
-    <div className={classes} style={{ width }}>
-      <i className="material-icons">search</i>
-      <Textfield
-        onChange={onChange}
-        label="Search"
-        style={{ width: width - 45 }}
-        disabled={disabled}
+    <div className={ classes } style={{ width }}>
+      <TextField 
+        icon="search" 
+        trailingIcon={{
+          icon: 'close',
+          tabIndex: 0,
+          onClick: (e) => {
+            setSearchInput('');
+            onChange(e);
+          }
+        }}
+        placeholder="Search" 
+        className="SearchField-mdc-text-field"
+        onChange={ onChangeHandle }
+        disabled={ disabled }
+        value={ searchInput }
       />
     </div>
   );

@@ -46,19 +46,22 @@ module.exports = (env, options) => {
                 use: ['babel-loader']
               },
               {
-                test: /\.scss$/,
+                test: /\.(scss|css)$/,
                 use: [
                     'style-loader',
                     {
                         loader: 'css-loader',
                         options: {
-                            sourceMap: isDevMode
+                            sourceMap: isDevMode,
                         }
                     },
                     {
                         loader: 'sass-loader',
                         options: {
-                            sourceMap: isDevMode
+                            sourceMap: isDevMode,
+                            includePaths: [
+                                path.resolve('node_modules')
+                            ],
                         }
                     }
                 ]

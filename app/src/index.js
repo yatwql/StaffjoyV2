@@ -23,7 +23,6 @@ import {
   SENTRY_PRODUCTION_KEY,
 } from './constants/config';
 
-require('../../third_party/node/material_design_lite/main');
 require('./main.scss');
 
 const currentEnv = detectEnvironment();

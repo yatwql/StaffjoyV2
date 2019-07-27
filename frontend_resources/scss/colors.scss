@@ -61,3 +61,10 @@ $neutral-button-disabled: #fafafa;
 
 $outline-button: $accent-grey;
 $outline-button-pressed: #7b787a;
+
+/* Material Design Colors - Theme Settings */
+$mdc-theme-primary: $staffjoy-palette-primary;
+$mdc-theme-secondary: $staffjoy-palette-secondary;
+$mdc-theme-background: rgb(250,250,250);
+$mdc-theme-on-primary: red;
+$mdc-theme-on-secondary: red;
