@@ -19,6 +19,7 @@ function ProfilePhoto({ photoUrl }) {
   /*
     TODO add back in when app supports custom photo
       <input
+        accept="image/*"
         type="file"
         name="photo-upload"
         id="photo-upload"
@@ -27,7 +28,7 @@ function ProfilePhoto({ photoUrl }) {
       />
       <label
         htmlFor="photo-upload"
-        className="mdl-button mdl-js-button change-photo-button"
+        className="mdc-button change-photo-button"
       >
         Change Photo
       </label>

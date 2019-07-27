@@ -2,7 +2,7 @@ import _ from 'lodash';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+import { Grid, GridInner, GridCell } from '@rmwc/grid';
 import * as actions from '../../actions';
 import LoadingScreen from '../LoadingScreen';
 import ProfilePhoto from '../ProfilePhoto';
@@ -57,48 +57,58 @@ class App extends Component {
     }
 
     return (
-      <div className="mdl-grid" id="myaccount">
-        <div className="mdl-cell mdl-cell--4-col">
-          <ProfilePhoto photoUrl={userData.photo_url} />
-          <StatsPanel memberSince={userData.member_since} />
-          <ul className="button-nav">
-            {appButton}
-            <li>
-              <a href={routeToMicroservice('www', '/logout/')}>
-                <StaffjoyButton
-                  size="small"
-                  buttonType="outline"
-                >
-                  Logout
-                </StaffjoyButton>
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div className="mdl-cell mdl-cell--4-col">
-          <AccountUpdate
-            name={userData.name}
-            email={userData.email}
-            phoneNumber={userData.phonenumber}
-            formData={formData.accountUpdate}
+      <Grid>
+        <GridInner
+          id="myaccount"
+        >
+          <GridCell
+            span={4}
+          >
+            <ProfilePhoto photoUrl={userData.photo_url} />
+            <StatsPanel memberSince={userData.member_since} />
+            <ul className="button-nav">
+              {appButton}
+              <li>
+                <a href={routeToMicroservice('www', '/logout/')}>
+                  <StaffjoyButton
+                    size="small"
+                    buttonType="outline"
+                  >
+                    Logout
+                  </StaffjoyButton>
+                </a>
+              </li>
+            </ul>
+          </GridCell>
+          <GridCell
+            span={4}
+          >
+            <AccountUpdate
+              name={userData.name}
+              email={userData.email}
+              phoneNumber={userData.phonenumber}
+              formData={formData.accountUpdate}
+            />
+            <PasswordUpdate formData={formData.passwordUpdate} />
+          </GridCell>
+          <GridCell
+            span={4}
+          >
+            <NotificationManager
+              enableEmailNotifications
+              enableSmsNotifications
+              enableReminders
+            />
+          </GridCell>
+          {!_.isEmpty(intercomSettings)
+          && (
+          <Intercom
+            {...intercomSettings}
+            appID={intercomSettings.app_id}
           />
-          <PasswordUpdate formData={formData.passwordUpdate} />
-        </div>
-        <div className="mdl-cell mdl-cell--4-col">
-          <NotificationManager
-            enableEmailNotifications
-            enableSmsNotifications
-            enableReminders
-          />
-        </div>
-        {!_.isEmpty(intercomSettings)
-        && (
-        <Intercom
-          {...intercomSettings}
-          appID={intercomSettings.app_id}
-        />
-        )}
-      </div>
+          )}
+        </GridInner>
+      </Grid>
     );
   }
 }
