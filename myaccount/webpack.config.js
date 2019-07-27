@@ -53,13 +53,16 @@ module.exports = (env, options) => {
                     {
                         loader: 'css-loader',
                         options: {
-                            sourceMap: isDevMode
+                            sourceMap: isDevMode,
                         }
                     },
                     {
                         loader: 'sass-loader',
                         options: {
-                            sourceMap: isDevMode
+                            sourceMap: isDevMode,
+                            includePaths: [
+                                path.resolve('node_modules')
+                            ],
                         }
                     }
                 ]

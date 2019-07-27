@@ -13,7 +13,6 @@ function TableHeader({ columns }) {
         {
           _.map(columns, (column) => {
             const classes = classNames({
-              'mdl-data-table__cell--non-numeric': true,
               [`col-${column.colWidth}`]: true,
             });
             const key = `col-header-${column.columnId}`;

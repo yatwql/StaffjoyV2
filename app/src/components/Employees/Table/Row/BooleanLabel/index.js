@@ -7,7 +7,6 @@ require('./table-boolean-label.scss');
 
 function TableBooleanLabel({ booleanField, callback }) {
   const labelClasses = classNames({
-    'mdl-data-table__cell--non-numeric': true,
     'table-boolean-label': true,
     invalid: !booleanField,
   });

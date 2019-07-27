@@ -12,7 +12,6 @@ function TableContactInfo({ email, phoneNumber }) {
   const value = formatPhoneNumber(phoneNumber) || email || nullValue;
 
   const labelClasses = classNames({
-    'mdl-data-table__cell--non-numeric': true,
     'table-contact-info-label': true,
     empty: value === nullValue,
   });
