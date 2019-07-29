@@ -11,20 +11,14 @@ import (
 )
 
 var (
-	box                 *rice.Box
-	cssBox              *rice.Box
-	imagesBox           *rice.Box
-	jsBox               *rice.Box
-	dataBox             *rice.Box
-	fontBox             *rice.Box
-	breakTimeCoverBox   *rice.Box
-	templatesBox        *rice.Box
-	breaktimeContentBox *rice.Box
-	breaktimeSource     = make(map[string]string)
+	breaktimeSource = make(map[string]string)
 )
 
-// Assets loads assets for rice box
-func Assets() {
+
+func loadAssets() {
+	initAllTemplates()
+	loadBreaktime()
+
 	cssBox = rice.MustFindBox("assets/css")
 	imagesBox = rice.MustFindBox("assets/images")
 	jsBox = rice.MustFindBox("assets/js")
@@ -33,9 +27,6 @@ func Assets() {
 	breakTimeCoverBox = rice.MustFindBox("assets/breaktime-cover")
 }
 
-func init() {
-	Assets()
-}
 
 // Added in template
 func hasField(v interface{}, name string) bool {
@@ -53,7 +44,7 @@ func hasField(v interface{}, name string) bool {
 func initAllTemplates() {
 	templatesBox = rice.MustFindBox("assets/templates")
 	template.New("HTMLTemplates")
-	templatesBox.Walk("/", func(path string, i os.FileInfo, e error) error {
+	templatesBox.Walk("", func(path string, i os.FileInfo, e error) error {
 		if i.IsDir() {
 			return nil
 		}
@@ -80,7 +71,7 @@ func initAllTemplates() {
 func loadBreaktime() {
 	breaktimeContentBox = rice.MustFindBox("assets/breaktime-content")
 	template.New("BreaktimeContent")
-	breaktimeContentBox.Walk("/", func(path string, i os.FileInfo, e error) error {
+	breaktimeContentBox.Walk("", func(path string, i os.FileInfo, e error) error {
 		if i.IsDir() {
 			return nil
 		}

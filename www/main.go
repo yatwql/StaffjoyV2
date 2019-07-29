@@ -54,6 +54,15 @@ var (
 	confirmPage      = &page{Title: "Open your email and click on the confirmation link!", Description: "Check your email and click the link for next steps", TemplateName: "confirm.tmpl", CSSId: "confirm"}
 	resetConfirmPage = &page{Title: "Please check your email for a reset link!", Description: "Check your email and click the link for next steps", TemplateName: "confirm.tmpl", CSSId: "confirm"}
 	newCompanyPage   = &page{Title: "Create a new company", Description: "Get started with a new Staffjoy account", TemplateName: "new_company.tmpl", CSSId: "newCompany"}
+
+	cssBox              *rice.Box
+	imagesBox           *rice.Box
+	jsBox               *rice.Box
+	dataBox             *rice.Box
+	fontBox             *rice.Box
+	breakTimeCoverBox   *rice.Box
+	templatesBox        *rice.Box
+	breaktimeContentBox *rice.Box
 )
 
 const (
@@ -78,9 +87,6 @@ func init() {
 		panic("Unable to determine configuration")
 	}
 	logger = config.GetLogger(ServiceName)
-
-	initAllTemplates()
-	loadBreaktime()
 
 	if len(signingToken) == 0 && !config.Debug {
 		panic("no signing token")
@@ -114,6 +120,8 @@ func NewRouter() *mux.Router {
 	confirmPage.Version = version
 	resetConfirmPage.Version = version
 	newCompanyPage.Version = version
+
+	loadAssets()
 
 	// Register asset folders we want served externally
 	for _, path := range assetPaths {
