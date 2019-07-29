@@ -5,7 +5,7 @@ import (
 	"os"
 	"reflect"
 
-	"github.com/russross/blackfriday"
+	"github.com/russross/blackfriday/v2"
 
 	rice "github.com/GeertJohan/go.rice"
 )
