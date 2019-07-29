@@ -23,6 +23,7 @@ var (
 	breaktimeSource     = make(map[string]string)
 )
 
+// Assets loads assets for rice box
 func Assets() {
 	cssBox = rice.MustFindBox("assets/css")
 	imagesBox = rice.MustFindBox("assets/images")
