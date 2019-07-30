@@ -11,7 +11,7 @@ import (
 )
 
 var (
-	loadingState        bool = false
+	loadingState        = false
 	tmpl                *template.Template
 	cssBox              *rice.Box
 	imagesBox           *rice.Box
