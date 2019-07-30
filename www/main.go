@@ -6,7 +6,6 @@ package main
 
 import (
 	"fmt"
-	"html/template"
 	"net/http"
 	"os"
 	"time"
@@ -30,7 +29,6 @@ var (
 
 	logger       *logrus.Entry
 	config       environments.Config
-	tmpl         *template.Template
 	signingToken = os.Getenv("SIGNING_SECRET")
 
 	// Subfolders that are served directly
@@ -54,15 +52,6 @@ var (
 	confirmPage      = &page{Title: "Open your email and click on the confirmation link!", Description: "Check your email and click the link for next steps", TemplateName: "confirm.tmpl", CSSId: "confirm"}
 	resetConfirmPage = &page{Title: "Please check your email for a reset link!", Description: "Check your email and click the link for next steps", TemplateName: "confirm.tmpl", CSSId: "confirm"}
 	newCompanyPage   = &page{Title: "Create a new company", Description: "Get started with a new Staffjoy account", TemplateName: "new_company.tmpl", CSSId: "newCompany"}
-
-	cssBox              *rice.Box
-	imagesBox           *rice.Box
-	jsBox               *rice.Box
-	dataBox             *rice.Box
-	fontBox             *rice.Box
-	breakTimeCoverBox   *rice.Box
-	templatesBox        *rice.Box
-	breaktimeContentBox *rice.Box
 )
 
 const (
@@ -98,6 +87,8 @@ func init() {
 // NewRouter builds the mux router for the site
 // (abstracted for testing purposes)
 func NewRouter() *mux.Router {
+	loadAssets()
+
 	r := mux.NewRouter().StrictSlash(true)
 
 	r.HandleFunc(healthcheck.HEALTHPATH, healthcheck.Handler)
@@ -120,8 +111,6 @@ func NewRouter() *mux.Router {
 	confirmPage.Version = version
 	resetConfirmPage.Version = version
 	newCompanyPage.Version = version
-
-	loadAssets()
 
 	// Register asset folders we want served externally
 	for _, path := range assetPaths {

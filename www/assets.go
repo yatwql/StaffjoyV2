@@ -11,11 +11,27 @@ import (
 )
 
 var (
-	breaktimeSource = make(map[string]string)
+	loadingState        bool = false
+	tmpl                *template.Template
+	cssBox              *rice.Box
+	imagesBox           *rice.Box
+	jsBox               *rice.Box
+	dataBox             *rice.Box
+	fontBox             *rice.Box
+	breakTimeCoverBox   *rice.Box
+	templatesBox        *rice.Box
+	breaktimeContentBox *rice.Box
+	breaktimeSource     = make(map[string]string)
 )
 
+func loadAssets() bool {
+	// @TODO find better, clean solution for the double init, may happen in tests only.
+	if loadingState {
+		logger.Debugf("loadAssets already loaded once. skipping.")
+		return true
+	}
+	loadingState = true
 
-func loadAssets() {
 	initAllTemplates()
 	loadBreaktime()
 
@@ -25,8 +41,9 @@ func loadAssets() {
 	dataBox = rice.MustFindBox("assets/data")
 	fontBox = rice.MustFindBox("assets/fonts")
 	breakTimeCoverBox = rice.MustFindBox("assets/breaktime-cover")
-}
 
+	return true
+}
 
 // Added in template
 func hasField(v interface{}, name string) bool {
@@ -48,6 +65,7 @@ func initAllTemplates() {
 		if i.IsDir() {
 			return nil
 		}
+
 		str, err := templatesBox.String(path)
 		if err != nil {
 			logger.Fatalf("Failed to load template: %s\n%s\n", path, err)
