@@ -155,6 +155,7 @@ new_git_repository(
     remote = "https://github.com/urfave/negroni.git",
 )
 
+## @TODO replace with rice
 new_git_repository(
     name = "go_assetfs",
     build_file = "//:third_party/go/elazarl_assetfs.BUILD",
