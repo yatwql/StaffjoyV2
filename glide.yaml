@@ -35,10 +35,6 @@ import:
   version: ^1.3.0
 - package: github.com/urfave/negroni
   version: 1.0.0
-- package: github.com/elazarl/go-bindata-assetfs
-  version: 38087fe4dafb822e541b3f7955075cc1c30bd294
-  subpackages:
-  - '...'
 - package: github.com/getsentry/raven-go
   version: 5c24d5110e0e198d9ae16f1f3465366085001d92
 - package: google.golang.org/grpc
@@ -129,7 +125,3 @@ import:
   version: 59383c442f7d7b190497e9bb8fc17a48d06cd03f
 - package: github.com/googleapis/gax-go
   version: bd5b16380fd03dc758d11cef74ba2e3bc8b0e8c2
-- package: github.com/jteeuwen/go-bindata
-  version: ^3.0.7
-  subpackages:
-  - '...'

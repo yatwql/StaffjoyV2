@@ -155,14 +155,6 @@ new_git_repository(
     remote = "https://github.com/urfave/negroni.git",
 )
 
-## @TODO replace with rice
-new_git_repository(
-    name = "go_assetfs",
-    build_file = "//:third_party/go/elazarl_assetfs.BUILD",
-    commit = "38087fe4dafb822e541b3f7955075cc1c30bd294", # Feb 23, 2018 (LATEST GIT COMMIT)
-    remote = "https://github.com/elazarl/go-bindata-assetfs.git",
-)
-
 new_git_repository(
     name = "go_raven",
     build_file = "//:third_party/go/getsentry_raven.BUILD",

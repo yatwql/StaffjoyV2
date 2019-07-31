@@ -30,7 +30,7 @@ go vet $(glide novendor)
 go test -race -cover $(glide novendor)
 go install -race -v $(glide novendor)
 
-gocount=$(git ls-files | grep '.go$' | grep -v 'pb.go$' | grep -v 'bindata.go$' | xargs gofmt -e -l -s | wc -l)
+gocount=$(git ls-files | grep '.go$' | grep -v 'pb.go$' | grep -v 'rice-box.go$' | xargs gofmt -e -l -s | wc -l)
 if [ "$gocount" -gt 0 ]; then
 	echo "Some Go files are not formatted. Check your formatting!"
 	exit 1
@@ -48,7 +48,7 @@ for pkg in $(go list ./... | grep -v /vendor/) ; do
     # check for packages with auto-generated files
     relativeFolder=$(echo $pkg | sed -e "s/v2.staffjoy.com\///")
     if [ $(ls -1 $relativeFolder -- *.go 2>/dev/null | grep .pb.go | wc -l) -eq 0 ]; then
-        if [ $(ls -1 $relativeFolder -- *.go 2>/dev/null | grep bindata.go | wc -l) -eq 0 ]; then
+        if [ $(ls -1 $relativeFolder -- *.go 2>/dev/null | grep rice-box.go | wc -l) -eq 0 ]; then
             golint -set_exit_status $pkg
         fi
     fi

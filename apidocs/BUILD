@@ -5,7 +5,8 @@ load("//tools:build_rules/go.bzl", "go_library")
 go_library(
     name = "apidocs",
     srcs = [
-        "bindata.go",
+        "rice-box.go",
+        "assets.go",
         "serve.go",
     ],
     deps = [

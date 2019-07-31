@@ -44,9 +44,8 @@ protoc \
     ./protobuf/account.proto
 # Encode swagger
 cd ./account/api/
-go-bindata account.swagger.json
-gofmt -s -w bindata.go
-sed -i "s/Json/JSON/g" bindata.go
+./build.sh
+gofmt -s -w rice-box.go
 cd ../..
 
 # email.proto -> email
@@ -111,7 +110,6 @@ protoc \
 
 cd ./company/api/
 
-go-bindata company.swagger.json
-gofmt -s -w bindata.go
-sed -i "s/Json/JSON/g" bindata.go
+./build.sh
+gofmt -s -w rice-box.go
 cd ../..
