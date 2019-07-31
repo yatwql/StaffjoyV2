@@ -9,7 +9,8 @@ go_library(
         "serve.go",
     ],
     deps = [
-        "@go_assetfs//:go-bindata-assetfs",
+        "@go_rice//:go.rice",
+        "@go_rice//:embedded",
         "@go_logrus//:logrus",
     ],
 )
