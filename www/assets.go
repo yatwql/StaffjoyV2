@@ -11,11 +11,14 @@ import (
 )
 
 var (
+	// Subfolders that are served directly
+	assetPaths = []string{"assets/js", "assets/css", "assets/images", "assets/data", "assets/fonts", "assets/breaktime-cover"}
+
 	loadingState        = false
 	tmpl                *template.Template
+	jsBox               *rice.Box
 	cssBox              *rice.Box
 	imagesBox           *rice.Box
-	jsBox               *rice.Box
 	dataBox             *rice.Box
 	fontBox             *rice.Box
 	breakTimeCoverBox   *rice.Box
@@ -35,9 +38,9 @@ func loadAssets() bool {
 	initAllTemplates()
 	loadBreaktime()
 
+	jsBox = rice.MustFindBox("assets/js")
 	cssBox = rice.MustFindBox("assets/css")
 	imagesBox = rice.MustFindBox("assets/images")
-	jsBox = rice.MustFindBox("assets/js")
 	dataBox = rice.MustFindBox("assets/data")
 	fontBox = rice.MustFindBox("assets/fonts")
 	breakTimeCoverBox = rice.MustFindBox("assets/breaktime-cover")
