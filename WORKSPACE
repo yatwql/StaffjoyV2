@@ -269,7 +269,7 @@ new_git_repository(
 new_git_repository(
     name = "go_blackfriday",
     build_file = "//:third_party/go/russross_blackfriday.BUILD",
-    commit = "a925a152c144ea7de0f451eaf2f7db9e52fa005a", # Jun 17, 2019 (LATEST GIT COMMIT)
+    commit = "d3b5b032dc8e8927d31a5071b56e14c89f045135", # v2.0.1 Sep 20, 2018 (LATEST OFFICIAL RELEASE)
     remote = "https://github.com/russross/blackfriday.git",
 )
 
@@ -355,4 +355,18 @@ new_git_repository(
     build_file = "//:third_party/go/googleapis_gax.BUILD",
     commit = "bd5b16380fd03dc758d11cef74ba2e3bc8b0e8c2", # May 13, 2019 (LATEST GIT COMMIT)
     remote = "https://github.com/googleapis/gax-go.git",
+)
+
+new_git_repository(
+    name = "go_rice",
+    build_file = "//:third_party/go/go_rice.BUILD",
+    commit = "c880e3cd4dd81db36b423e83dc0aeea4dca93774", # May 1, 2019 (LATEST GIT COMMIT)
+    remote = "https://github.com/GeertJohan/go.rice.git",
+)
+
+new_git_repository(
+    name = "go_zipexe",
+    build_file = "//:third_party/go/go_zipexe.BUILD",
+    commit = "74d766ac1dde7458348221869a7d1e7e5fa0597e", # v1.0.1 May 7, 2019 (LATEST GIT COMMIT)
+    remote = "https://github.com/daaku/go.zipexe.git",
 )

@@ -4,9 +4,11 @@ go 1.12
 
 require (
 	cloud.google.com/go v0.41.0
+	github.com/GeertJohan/go.rice v1.0.0
 	github.com/PuerkitoBio/goquery v1.5.0 // indirect
 	github.com/bazelbuild/buildifier v0.0.0-20190606114006-eb1a85ca787f // indirect
 	github.com/certifi/gocertifi v0.0.0-20180118203423-deb3ae2ef261 // indirect
+	github.com/daaku/go.zipexe v1.0.1 // indirect
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/dpapathanasiou/go-recaptcha v0.0.0-20190121160230-be5090b17804
 	github.com/elazarl/go-bindata-assetfs v1.0.1-0.20180223160309-38087fe4dafb
@@ -30,8 +32,9 @@ require (
 	github.com/lyft/protoc-gen-star v0.4.10 // indirect
 	github.com/mailgun/mailgun-go/v3 v3.6.0
 	github.com/mailru/easyjson v0.0.0-20190626092158-b2ccc519800e // indirect
+	github.com/nkovacs/streamquote v1.0.0 // indirect
 	github.com/pkg/errors v0.8.2-0.20190227000051-27936f6d90f9 // indirect
-	github.com/russross/blackfriday v1.5.3-0.20190616195246-a925a152c144
+	github.com/russross/blackfriday/v2 v2.0.1
 	github.com/shurcooL/sanitized_anchor_name v1.0.0 // indirect
 	github.com/sirupsen/logrus v1.4.2
 	github.com/spf13/afero v1.2.2 // indirect

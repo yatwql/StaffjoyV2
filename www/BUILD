@@ -7,7 +7,7 @@ go_binary(
     name = "www",
     srcs = [
         "activate.go",
-        "bindata.go",
+        "assets.go",
         "breaktime_episodes.go",
         "confirmreset.go",
         "login.go",
@@ -17,6 +17,7 @@ go_binary(
         "page.go",
         "reset.go",
         "signup.go",
+        "rice-box.go",
     ],
     deps = [
         "//account",
@@ -31,8 +32,9 @@ go_binary(
         "//helpers",
         "//middlewares",
         "//suite",
-        "@go_assetfs//:go-bindata-assetfs",
-        "@go_blackfriday//:blackfriday",
+        "@go_blackfriday//:v2",
+        "@go_rice//:go.rice",
+        "@go_rice//:embedded",
         "@go_gorilla_csrf//:csrf",
         "@go_gorilla_mux//:mux",
         "@go_grpc//:codes",
