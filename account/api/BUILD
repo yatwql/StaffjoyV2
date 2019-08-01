@@ -8,7 +8,7 @@ go_binary(
     srcs = [
         "account.pb.go",
         "account.pb.gw.go",
-        "bindata.go",
+        "rice-box.go",
         "main.go",
     ],
     deps = [
@@ -16,6 +16,8 @@ go_binary(
         "//apidocs",
         "//environments",
         "//healthcheck",
+        "@go_rice//:go.rice",
+        "@go_rice//:embedded",
         "@go_cloud//:trace",
         "@go_gogo_protobuf//:gogoproto",
         "@go_gogo_protobuf//:proto",

@@ -44,8 +44,9 @@ if ! command -V buildifier ; then
     go get github.com/bazelbuild/buildtools/buildifier
 fi
 
-if ! command -V go-bindata ; then
-    go get -u github.com/jteeuwen/go-bindata/...
+if ! command -V rice ; then
+    go get -u github.com/GeertJohan/go.rice
+    go get -u github.com/GeertJohan/go.rice/rice
 fi
 
 go get -u github.com/gogo/protobuf/...

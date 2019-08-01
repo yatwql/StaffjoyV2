@@ -31,9 +31,6 @@ var (
 	config       environments.Config
 	signingToken = os.Getenv("SIGNING_SECRET")
 
-	// Subfolders that are served directly
-	assetPaths = []string{"assets/css", "assets/images", "assets/js", "assets/data", "assets/fonts", "assets/breaktime-cover"}
-
 	// Paths that we are 301 redirecting to suite.staffjoy.com
 	legacyPaths = []string{"/api/v2/", "/auth/", "/euler/", "/myschedules/", "/manager/"}
 
@@ -117,14 +114,14 @@ func NewRouter() *mux.Router {
 		var metaHTTPBox *rice.HTTPBox
 		urlPath := fmt.Sprintf("/%s/", path) // Wrap in slashes
 
-		// find cleaner solution, to iterate `assetPaths`
+		// @TODO find cleaner solution, to iterate `assetPaths`
 		switch path {
 		case assetPaths[0]:
-			metaHTTPBox = cssBox.HTTPBox()
-		case assetPaths[1]:
-			metaHTTPBox = imagesBox.HTTPBox()
-		case assetPaths[2]:
 			metaHTTPBox = jsBox.HTTPBox()
+		case assetPaths[1]:
+			metaHTTPBox = cssBox.HTTPBox()
+		case assetPaths[2]:
+			metaHTTPBox = imagesBox.HTTPBox()
 		case assetPaths[3]:
 			metaHTTPBox = dataBox.HTTPBox()
 		case assetPaths[4]:

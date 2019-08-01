@@ -6,7 +6,7 @@ load("@io_bazel_rules_docker//container:container.bzl", "container_image")
 go_binary(
     name = "companyapi",
     srcs = [
-        "bindata.go",
+        "rice-box.go",
         "company.pb.go",
         "company.pb.gw.go",
         "main.go",
@@ -16,6 +16,8 @@ go_binary(
         "//company",
         "//environments",
         "//healthcheck",
+        "@go_rice//:go.rice",
+        "@go_rice//:embedded",
         "@go_cloud//:trace",
         "@go_gogo_protobuf//:gogoproto",
         "@go_gogo_protobuf//:proto",

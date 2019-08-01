@@ -11,7 +11,6 @@ require (
 	github.com/daaku/go.zipexe v1.0.1 // indirect
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/dpapathanasiou/go-recaptcha v0.0.0-20190121160230-be5090b17804
-	github.com/elazarl/go-bindata-assetfs v1.0.1-0.20180223160309-38087fe4dafb
 	github.com/fatih/structs v1.1.1-0.20181010231757-878a968ab225
 	github.com/fatih/structtag v1.0.0 // indirect
 	github.com/getsentry/raven-go v0.1.2-0.20190619092523-5c24d5110e0e
@@ -28,7 +27,6 @@ require (
 	github.com/gorilla/sessions v1.1.3 // indirect
 	github.com/grpc-ecosystem/grpc-gateway v1.9.4-0.20190629162216-740ef2ee80c4
 	github.com/hashicorp/golang-lru v0.5.2-0.20190520140433-59383c442f7d // indirect
-	github.com/jteeuwen/go-bindata v3.0.7+incompatible // indirect
 	github.com/lyft/protoc-gen-star v0.4.10 // indirect
 	github.com/mailgun/mailgun-go/v3 v3.6.0
 	github.com/mailru/easyjson v0.0.0-20190626092158-b2ccc519800e // indirect
