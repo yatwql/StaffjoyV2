@@ -10,7 +10,7 @@ import (
 
 var (
 	// asset folders that are served directly
-	assetPaths = []string{"js", "css", "images", "lang", "lib"}
+	assetPaths = []string{"js", "css", "images"}
 
 	// All templates in this foilder will be loaded
 	homeTemplate = "assets/templates/index.tmpl"
@@ -39,8 +39,6 @@ func loadAssets() bool {
 	jsBox = rice.MustFindBox("assets/js")
 	cssBox = rice.MustFindBox("assets/css")
 	imagesBox = rice.MustFindBox("assets/images")
-	langBox = rice.MustFindBox("assets/lang")
-	libBox = rice.MustFindBox("assets/lib")
 
 	return true
 }

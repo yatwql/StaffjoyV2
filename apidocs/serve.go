@@ -53,10 +53,6 @@ func (p *page) newMux() (*http.ServeMux, error) {
 			metaHTTPBox = cssBox.HTTPBox()
 		case assetPaths[2]:
 			metaHTTPBox = imagesBox.HTTPBox()
-		case assetPaths[3]:
-			metaHTTPBox = langBox.HTTPBox()
-		case assetPaths[4]:
-			metaHTTPBox = libBox.HTTPBox()
 		}
 
 		mux.Handle(urlPath, http.StripPrefix(urlPath, http.FileServer(metaHTTPBox)))
