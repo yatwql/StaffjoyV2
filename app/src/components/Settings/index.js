@@ -47,7 +47,7 @@ class Settings extends Component {
     dispatch(actions.initializeSettings(companyUuid, teamUuid));
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     const {
       dispatch,
       teamUuid,

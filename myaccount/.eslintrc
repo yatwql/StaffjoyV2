@@ -17,6 +17,8 @@
         "max-len": [1, 120, 2, {ignoreComments: true}],
         "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
         "react/forbid-prop-types": "off",
+        "react/state-in-constructor": "off",
+        "react/jsx-props-no-spreading": "off",
         "react/destructuring-assignment": "off",
         "import/prefer-default-export": "off",
         "import/no-extraneous-dependencies": "off"

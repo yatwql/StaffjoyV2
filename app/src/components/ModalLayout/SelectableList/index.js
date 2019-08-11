@@ -16,7 +16,7 @@ class SelectableModalList extends Component {
     };
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     const { records, selectedUuid, formField, formCallback,
     uuidKey } = this.props;
     const selections = {};

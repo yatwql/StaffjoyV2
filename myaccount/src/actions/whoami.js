@@ -55,7 +55,7 @@ function fetchWhoAmI() {
     })
       .then(checkStatus)
       .then(parseJSON)
-      .then(data => dispatch(receiveWhoAmI(data)));
+      .then((data) => dispatch(receiveWhoAmI(data)));
   };
 }
 
@@ -90,6 +90,6 @@ export function fetchIntercomSettings() {
     })
       .then(checkStatus)
       .then(parseJSON)
-      .then(data => dispatch(receiveIntercomSettings(data)));
+      .then((data) => dispatch(receiveIntercomSettings(data)));
   };
 }

@@ -13,7 +13,7 @@ class EmployeeFormField extends Component {
     this.state = { showSuccess: false };
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (
       nextProps.updateStatus === fieldUpdateStatus.SUCCESS &&
       this.props.updateStatus === fieldUpdateStatus.UPDATING

@@ -27,7 +27,7 @@ class Scheduling extends Component {
     dispatch(actions.initializeScheduling(companyUuid, teamUuid, routeQuery));
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     const { dispatch, companyUuid, teamUuid, routeQuery } = this.props;
     const newTeamUuid = nextProps.teamUuid;
 

@@ -35,7 +35,7 @@ class ShiftModalDaySelector extends Component {
     this.cells = cells;
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     const selectedState = {};
     const { selectedDate, formCallback } = this.props;
     _.forEach(this.cells, (cell) => {

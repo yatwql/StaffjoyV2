@@ -102,7 +102,7 @@ class CreateEmployeeModal extends Component {
     this.state = { submitting: false };
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.submitSucceeded && !this.props.submitSucceeded) {
       this.setState({ submitting: false });
       this.closeModal();
