@@ -26,7 +26,7 @@ class EmployeeSidePanel extends Component {
     dispatch(actions.initializeEmployeeSidePanel(companyUuid, employeeUuid));
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     const { dispatch } = this.props;
     const { companyUuid, employeeUuid } = this.props.match.params;
     const newEmployeeUuid = nextProps.match.params.employeeUuid;

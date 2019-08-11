@@ -16,7 +16,7 @@ require('./scheduling-date-controller.scss');
 
 class SchedulingDateController extends Component {
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     this.setTime();
     const intervalId = window.setInterval(() => this.setTime(), 1000);
     this.setState({ intervalId });
