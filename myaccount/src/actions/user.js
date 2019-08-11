@@ -16,7 +16,7 @@ import {
 } from '../utility';
 
 // TODO delete this once we start fetching
-const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
+const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 function updatingPassword() {
   return {
@@ -177,7 +177,7 @@ function fetchUser(userUuid) {
     })
       .then(checkStatus)
       .then(parseJSON)
-      .then(data => dispatch(receiveUser({
+      .then((data) => dispatch(receiveUser({
         data,
         lastUpdate: Date.now(),
       })));
