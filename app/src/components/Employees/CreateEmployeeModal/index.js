@@ -85,6 +85,21 @@ SelectableList.propTypes = {
 };
 
 class CreateEmployeeModal extends Component {
+  state = {
+    submitting: false
+  };
+
+
+  static getDerivedStateFromProps(props, state) {
+    if (props.submitSucceeded && state.submitting) {
+      return {
+        submitting: false
+      };
+    }
+
+    return null;
+  }
+
 
   constructor(props) {
     super(props);
@@ -98,26 +113,27 @@ class CreateEmployeeModal extends Component {
       const { createEmployeeFromForm, companyUuid, dispatch } = this.props;
       dispatch(createEmployeeFromForm(companyUuid));
     });
-
-    this.state = { submitting: false };
   }
 
-  UNSAFE_componentWillReceiveProps(nextProps) {
-    if (nextProps.submitSucceeded && !this.props.submitSucceeded) {
-      this.setState({ submitting: false });
+
+  componentDidUpdate(prevProps) {
+    if (this.props.submitSucceeded && !prevProps.submitSucceeded) {
       this.closeModal();
-      // TODO: add success modal
+      // TODO: add success modal?
     }
   }
+
 
   closeModal() {
     this.props.reset();
     this.modal.hide();
   }
 
+
   openModal() {
     this.modal.show();
   }
+
 
   render() {
     const { teams } = this.props;
@@ -229,6 +245,7 @@ class CreateEmployeeModal extends Component {
   }
 }
 
+
 CreateEmployeeModal.propTypes = {
   companyUuid: PropTypes.string.isRequired,
   createEmployeeFromForm: PropTypes.func.isRequired,
@@ -242,9 +259,11 @@ CreateEmployeeModal.propTypes = {
   submitSucceeded: PropTypes.bool.isRequired,
 };
 
+
 CreateEmployeeModal.defaultProps = {
   createEmployeeFromForm: () => {}
 };
+
 
 function mapStateToProps(state) {
   const createEmployeeForm = _.get(state.form, 'create-employee', EMPTY_OBJECT);
@@ -254,12 +273,14 @@ function mapStateToProps(state) {
   };
 }
 
+
 function mapDisatchToProps(dispatch) {
   return {
     createEmployeeFromForm: actions.createEmployeeFromForm,
     dispatch,
   };
 }
+
 
 const Form = reduxForm({
   form: 'create-employee',
