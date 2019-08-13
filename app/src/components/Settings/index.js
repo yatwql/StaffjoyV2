@@ -11,9 +11,36 @@ import StaffjoyButton from 'components/StaffjoyButton';
 import SearchField from 'components/SearchField';
 import TeamJobs from './TeamJobs';
 
+
 require('./settings.scss');
 
+
 class Settings extends Component {
+  state = {
+    prevPropsTeamUuid: this.props.teamUuid
+  };
+
+  static getDerivedStateFromProps(props, state) {
+    const {
+      dispatch,
+      teamUuid,
+    } = props;
+
+    // get the jobs
+    if (teamUuid !== state.prevPropsTeamUuid) {
+      dispatch(
+        actions.initializeSettings(companyUuid, teamUuid)
+      );
+
+      return {
+        prevPropsTeamUuid: teamUuid
+      }
+    }
+
+    return null;
+  }
+
+
   constructor(props) {
     super(props);
 
@@ -47,29 +74,18 @@ class Settings extends Component {
     dispatch(actions.initializeSettings(companyUuid, teamUuid));
   }
 
-  UNSAFE_componentWillReceiveProps(nextProps) {
-    const {
-      dispatch,
-      teamUuid,
-    } = this.props;
-
-    // get the jobs
-    if (teamUuid !== nextProps.teamUuid) {
-      dispatch(
-        actions.initializeSettings(nextProps.companyUuid, nextProps.teamUuid)
-      );
-    }
-  }
 
   handleShowModalClick(jobUuid) {
     this.jobUuidToDelete = jobUuid;
     this.modal.showModal();
   }
 
+
   handleCancelModalClick() {
     this.jobUuidToDelete = null;
     this.modal.hideModal();
   }
+
 
   handleColorPickerChange({ hex, source }, jobUuid) {
     const {
@@ -81,6 +97,7 @@ class Settings extends Component {
 
     this.props.updateTeamJob(companyUuid, teamUuid, jobUuid, { color });
   }
+
 
   handleJobColorClick(event, jobUuid) {
     const {
@@ -96,9 +113,11 @@ class Settings extends Component {
     });
   }
 
+
   handleSearchChange(event) {
     this.props.setFilters({ searchQuery: event.target.value });
   }
+
 
   handleJobNameChange(event, jobUuid) {
     const {
@@ -112,6 +131,7 @@ class Settings extends Component {
       { name: event.target.value }
     );
   }
+
 
   saveTeamJob(event, jobUuid) {
     const {
@@ -133,15 +153,18 @@ class Settings extends Component {
     );
   }
 
+
   handleJobNameBlur(event, jobUuid) {
     this.saveTeamJob(event, jobUuid);
   }
+
 
   handleJobNameKeyPress(event, jobUuid) {
     if (event.key === 'Enter') {
       this.saveTeamJob(event, jobUuid);
     }
   }
+
 
   handleDeleteJobClick() {
     const {
@@ -166,6 +189,7 @@ class Settings extends Component {
     this.jobUuidToDelete = null;
   }
 
+
   handleNewJobNameChange(event) {
     const {
       setNewTeamJob,
@@ -175,6 +199,7 @@ class Settings extends Component {
       { name: event.target.value },
     );
   }
+
 
   createNewJob(event) {
     const {
@@ -204,11 +229,13 @@ class Settings extends Component {
     this.createNewJob(event);
   }
 
+
   handleNewJobNameKeyPress(event) {
     if (event.key === 'Enter') {
       this.createNewJob(event);
     }
   }
+
 
   handleNewJobDeleteIconClick() {
     const {
@@ -220,6 +247,7 @@ class Settings extends Component {
     );
   }
 
+
   handleAddNewJobClick() {
     const {
       setNewTeamJob,
@@ -229,6 +257,7 @@ class Settings extends Component {
       { isVisible: true },
     );
   }
+
 
   render() {
     const {
@@ -338,6 +367,7 @@ Settings.propTypes = {
   isFetching: PropTypes.bool.isRequired,
 };
 
+
 function mapStateToProps(state, ownProps) {
   const teamUuid = ownProps.match.params.teamUuid;
 
@@ -377,6 +407,7 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
+
 const mapDispatchToProps = dispatch => ({
   dispatch,
   createTeamJob: (companyUuid, teamUuid, jobPayload) => {
@@ -404,9 +435,11 @@ const mapDispatchToProps = dispatch => ({
   },
 });
 
+
 const ConnectedComponent = connect(
   mapStateToProps,
   mapDispatchToProps,
 )(Settings);
+
 
 export default withRouter(ConnectedComponent);
