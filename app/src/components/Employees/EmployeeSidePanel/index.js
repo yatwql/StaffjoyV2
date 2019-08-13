@@ -136,9 +136,7 @@ function mapStateToProps(state, ownProps) {
     {}
   );
 
-
   const initialValues = employee;
-
 
   return {
     companyUuid: ownProps.match.params.companyUuid,
