@@ -18,6 +18,29 @@ import CreateShiftModal from './CreateShiftModal';
 require('./scheduling.scss');
 
 class Scheduling extends Component {
+  state = {
+    prevPropsTeamUuid: this.props.teamUuid
+  };
+
+
+  static getDerivedStateFromProps(props, state) {
+    const { dispatch, companyUuid, teamUuid, routeQuery } = props;
+    const prevPropsTeamUuid = state.prevPropsTeamUuid;
+
+    // get the jobs
+    if (teamUuid !== prevPropsTeamUuid) {
+      dispatch(
+        actions.initializeScheduling(companyUuid, teamUuid, routeQuery)
+      );
+
+      return {
+        prevPropsTeamUuid: teamUuid
+      }
+    }
+
+    return null;
+  }
+
 
   componentDidMount() {
     const { dispatch, companyUuid, teamUuid, routeQuery } = this.props;
@@ -27,18 +50,6 @@ class Scheduling extends Component {
     dispatch(actions.initializeScheduling(companyUuid, teamUuid, routeQuery));
   }
 
-  UNSAFE_componentWillReceiveProps(nextProps) {
-    const { dispatch, companyUuid, teamUuid, routeQuery } = this.props;
-    const newTeamUuid = nextProps.teamUuid;
-
-    // if changing between different scheduling views, the same component
-    // instance is used, so this is checks to get data
-    if (newTeamUuid !== teamUuid) {
-      dispatch(
-        actions.initializeScheduling(companyUuid, newTeamUuid, routeQuery)
-      );
-    }
-  }
 
   render() {
     const { isFetching, updateSearchFilter, params, filters, employees, jobs,
@@ -47,6 +58,7 @@ class Scheduling extends Component {
       updateSchedulingModalFormData, createTeamShift, modalFormData,
       clearSchedulingModalFormData, publishTeamShifts, isSaving, companyUuid,
       teamUuid } = this.props;
+
     const tableSize = 7;
     const viewBy = filters.viewBy;
     const startDate = params.startDate;
@@ -126,6 +138,7 @@ class Scheduling extends Component {
               />
             </li>
           </ul>
+
           {(() =>
             // TODO when we have more views, determine which view type to use
             // if (props.params.viewType === 'week') {
@@ -159,6 +172,7 @@ class Scheduling extends Component {
   }
 }
 
+
 Scheduling.propTypes = {
   dispatch: PropTypes.func.isRequired,
   isFetching: PropTypes.bool.isRequired,
@@ -187,6 +201,7 @@ Scheduling.propTypes = {
   publishTeamShifts: PropTypes.func.isRequired,
   handleCardZAxisChange: PropTypes.func.isRequired,
 };
+
 
 function mapStateToProps(state, ownProps) {
   const teamUuid = ownProps.match.params.teamUuid;
@@ -326,9 +341,11 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   dispatch,
 });
 
+
 const ConnectedComponent = connect(
   mapStateToProps,
   mapDispatchToProps
 )(Scheduling);
+
 
 export default withRouter(ConnectedComponent);
