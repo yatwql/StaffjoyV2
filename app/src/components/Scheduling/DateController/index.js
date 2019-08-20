@@ -15,27 +15,34 @@ import {
 require('./scheduling-date-controller.scss');
 
 class SchedulingDateController extends Component {
+  constructor(props) {
+    super(props);
 
-  UNSAFE_componentWillMount() {
-    this.setTime();
-    const intervalId = window.setInterval(() => this.setTime(), 1000);
-    this.setState({ intervalId });
+    const intervalId = window.setInterval(() => {
+      this.setState({
+        time: this.getTime()
+      });
+    }, 1000);
+
+    this.state = {
+      time: this.getTime(),
+      intervalId
+    };
   }
+
 
   componentWillUnmount() {
     clearInterval(this.state.intervalId);
   }
 
-  setTime() {
-    const { timezone } = this.props;
 
-    const time = moment.tz(timezone).format(MOMENT_CALENDAR_TIME_DISPLAY);
-    this.setState({ time });
+  getTime() {
+    return moment.tz(this.props.timezone).format(MOMENT_CALENDAR_TIME_DISPLAY);
   }
 
+
   render() {
-    const { queryStart, queryStop, stepDateRange, timezone,
-      disabled } = this.props;
+    const { queryStart, queryStop, stepDateRange, timezone, disabled } = this.props;
     const { time } = this.state;
     const startDisplay = moment.utc(queryStart).tz(timezone)
       .format(MOMENT_CALENDAR_START_DISPLAY);
@@ -87,8 +94,10 @@ SchedulingDateController.propTypes = {
   disabled: PropTypes.bool,
 };
 
+
 SchedulingDateController.defaultProps = {
   disabled: false,
 };
+
 
 export default SchedulingDateController;

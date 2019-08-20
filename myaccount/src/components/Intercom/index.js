@@ -1,4 +1,5 @@
 // Copy and pasted from react-intercom: https://github.com/nhagen/react-intercom
+// https://github.com/couds/react-intercom/blob/master/src/index.js
 
 // We wanted to make a change to the library to poll Intercom
 // every 20 seconds. This is required to support our onboarding chat feature.
@@ -13,6 +14,7 @@ const canUseDOM = !!(
   window.document && window.document.createElement)
 );
 
+
 export const IntercomAPI = (...args) => {
   if (canUseDOM && window.Intercom) {
     window.Intercom.apply(null, args);
@@ -21,6 +23,7 @@ export const IntercomAPI = (...args) => {
   }
 };
 
+
 export default class Intercom extends Component {
   static propTypes = {
     appID: PropTypes.string.isRequired,
@@ -28,15 +31,13 @@ export default class Intercom extends Component {
 
   static displayName = 'Intercom';
 
-  constructor(props) {
-    super(props);
-
+  componentDidMount() {
     const {
       appID,
       ...otherProps
-    } = props;
+    } = this.props;
 
-    if (!appID || !canUseDOM) {
+    if (!appID) {
       return;
     }
 
@@ -64,18 +65,17 @@ export default class Intercom extends Component {
     }
   }
 
-  UNSAFE_componentWillReceiveProps(nextProps) {
+
+  componentDidUpdate(prevProps) {
     const {
       appID,
       ...otherProps
-    } = nextProps;
-
-    if (!canUseDOM) return;
+    } = this.props;
 
     window.intercomSettings = { ...otherProps, app_id: appID };
 
     if (window.Intercom) {
-      if (this.loggedIn(this.props) && !this.loggedIn(nextProps)) {
+      if (this.loggedIn(prevProps) && !this.loggedIn(this.props)) {
         // Shutdown and boot each time the user logs out to clear conversations
         window.Intercom('shutdown');
         window.Intercom('boot', otherProps);
@@ -85,12 +85,9 @@ export default class Intercom extends Component {
     }
   }
 
-  shouldComponentUpdate() {
-    return false;
-  }
 
   componentWillUnmount() {
-    if (!canUseDOM || !window.Intercom) return false;
+    if (!window.Intercom) return false;
 
     window.Intercom('shutdown');
 
@@ -98,9 +95,11 @@ export default class Intercom extends Component {
     delete window.intercomSettings;
   }
 
+
   loggedIn(props) {
     return props.email || props.user_id;
   }
+
 
   render() {
     return false;

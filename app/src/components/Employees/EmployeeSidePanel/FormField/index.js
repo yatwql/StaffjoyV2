@@ -8,23 +8,30 @@ require('./employee-form-field.scss');
 
 class EmployeeFormField extends Component {
 
+  state = {
+    showSuccess: false
+  };
+
+
   constructor(props) {
     super(props);
-    this.state = { showSuccess: false };
   }
 
-  UNSAFE_componentWillReceiveProps(nextProps) {
+
+  componentDidUpdate(prevProps) {
     if (
-      nextProps.updateStatus === fieldUpdateStatus.SUCCESS &&
-      this.props.updateStatus === fieldUpdateStatus.UPDATING
+      this.props.updateStatus === fieldUpdateStatus.SUCCESS &&
+      prevProps.updateStatus === fieldUpdateStatus.UPDATING
     ) {
       this.setState({ showSuccess: true });
+
       setTimeout(
         () => { this.setState({ showSuccess: false }); },
         1000,
       );
     }
   }
+
 
   render() {
     const { iconKey, input, onBlur, updateStatus } = this.props;
@@ -93,6 +100,7 @@ class EmployeeFormField extends Component {
   }
 }
 
+
 EmployeeFormField.propTypes = {
   iconKey: PropTypes.string,
   updateStatus: PropTypes.string,
@@ -102,5 +110,6 @@ EmployeeFormField.propTypes = {
   }).isRequired,
   onBlur: PropTypes.func,
 };
+
 
 export default EmployeeFormField;
