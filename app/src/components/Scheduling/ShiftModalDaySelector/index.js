@@ -14,6 +14,12 @@ require('./shift-modal-day-selector.scss');
 
 class ShiftModalDaySelector extends Component {
 
+  state = {
+    selected: {},
+    selections: {}
+  };
+
+
   constructor(props) {
     super(props);
 
@@ -21,6 +27,7 @@ class ShiftModalDaySelector extends Component {
     const startMoment = moment(startDate);
     const cells = _.map(_.range(tableSize), (i) => {
       const calDate = startMoment.clone().add(i, 'days');
+
       return {
         dayLetter: getLetterFromDayName(calDate.format('dddd')),
         displayDate: calDate.format(MOMENT_DATE_DISPLAY),
@@ -28,14 +35,13 @@ class ShiftModalDaySelector extends Component {
       };
     });
 
+    this.initSelections();
     this.selectedDay = this.selectedDay.bind(this);
-    this.state = {
-      selected: {},
-    };
     this.cells = cells;
   }
 
-  UNSAFE_componentWillMount() {
+
+  initSelections() {
     const selectedState = {};
     const { selectedDate, formCallback } = this.props;
     _.forEach(this.cells, (cell) => {

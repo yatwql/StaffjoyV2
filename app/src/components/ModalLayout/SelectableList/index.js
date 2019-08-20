@@ -12,11 +12,13 @@ class SelectableModalList extends Component {
     selections: {}
   };
 
+
   constructor(props) {
     super(props);
     this.selectElement = this.selectElement.bind(this);
     this.initSelections();
   }
+
 
   initSelections() {
     const { records, selectedUuid, formField, formCallback, uuidKey } = this.props;
