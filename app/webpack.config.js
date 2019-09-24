@@ -59,9 +59,11 @@ module.exports = (env, options) => {
                         loader: 'sass-loader',
                         options: {
                             sourceMap: isDevMode,
-                            includePaths: [
-                                path.resolve('node_modules')
-                            ],
+                            sassOptions: {
+                                includePaths: [
+                                    path.resolve('node_modules')
+                                ],
+                            }
                         }
                     }
                 ]

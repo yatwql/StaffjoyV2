@@ -1,7 +1,7 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: superpowers-deployment
+  name: superpowers
 spec:
   replicas: 1
   revisionHistoryLimit: 1
