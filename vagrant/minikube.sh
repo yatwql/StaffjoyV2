@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # VERSIONS:
-MINIKUBE_VERSION=v1.3.1
-KUBECTL_CLI_VERSION=v1.15.3
+MINIKUBE_VERSION=v1.4.0
+KUBECTL_CLI_VERSION=v1.16.0
 
 
 # ARGS
@@ -55,14 +55,9 @@ sudo -E minikube start \
     --service-cluster-ip-range="10.0.0.0/12" \
     --extra-config="kubelet.cluster-dns=10.0.0.10"
 
-
-# set the kubectl context to minikube (this overwrites ~/.kube and ~/.minikube, but leaves files' ownership as root:root)
-sudo -E minikube update-context
-
-
 # enables dashboard
-sudo minikube addons enable dashboard
-
+sudo -E minikube addons enable dashboard
+sudo -E minikube dashboard
 
 # either use sudo on all kubectl commands, or chown/chgrp to your user
 sudo chown -R ${USER}:${USER} /home/${USER}/.kube /home/${USER}/.minikube
