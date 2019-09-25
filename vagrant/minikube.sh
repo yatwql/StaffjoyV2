@@ -57,7 +57,7 @@ sudo -E minikube start \
 
 # enables dashboard
 sudo -E minikube addons enable dashboard
-sudo -E minikube dashboard
+sudo -E minikube dashboard 2>&1 &
 
 # either use sudo on all kubectl commands, or chown/chgrp to your user
 sudo chown -R ${USER}:${USER} /home/${USER}/.kube /home/${USER}/.minikube
