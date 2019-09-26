@@ -9,7 +9,7 @@ Current fork will focus on coding standards, testing, DevOps, React, Go and **ma
 There are 2 blood lines for this project:
 
 * The active development branch is [`master`](https://github.com/LandRover/StaffjoyV2), where new features are being added, dependencies updated and processes change.
-* The [`minimal-fixes-to-compile`](https://github.com/LandRover/StaffjoyV2/tree/minimal-fixes-to-compile) branch contains minimal changes to this original repo to make it compile without altering the original functionality. Mainly specifying the version numbers to fit 2016 latest dependencies.
+* The [`minimal-fixes-to-compile`](https://github.com/LandRover/StaffjoyV2/tree/minimal-fixes-to-compile) branch contains minimal changes to this original repo to make it compile without altering the original functionality. Mainly by specifying the version numbers to fit 2016 latest dependencies.
 
 ---
 
