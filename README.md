@@ -106,7 +106,7 @@ sudo cp unison /usr/local/bin
 
 Run `make dev`. Code will boot and run at [staffjoy-v2.local](http://www.staffjoy-v2.local). Note that the first time you do this could take up to 45 minutes in order to provision the VM!
 
-Changes will trigger an automatic rebuild and redeployment. (Check deployment progress at [kubernetes.staffjoy-v2.local/ui/](http://kubernetes.staffjoy-v2.local/ui/)). End the dev server with `control + c` (and it will automatically shut off the VM).
+Changes will trigger an automatic rebuild and redeployment. (Check deployment progress at [kubernetes-dashboard url](http://kubernetes.staffjoy-v2.local/api/v1/namespaces/kubernetes-dashboard/services/http:kubernetes-dashboard:/proxy/#/overview?namespace=development)). End the dev server with `control + c` (and it will automatically shut off the VM).
 
 **Known Bug on OSX Sierra**: If Vagrant cannot find download the box, run `sudo rm /opt/vagrant/embedded/bin/curl`. ([Bug tracking link](https://github.com/Varying-Vagrant-Vagrants/VVV/issues/354))
 
