@@ -1,11 +1,14 @@
 #!/bin/bash
 PATH=$PATH:$GOPATH/bin:/usr/local/go/bin
 
+# VERSIONS:
+GOLANG_VERSION=1.13
+
 if [ ! -d /usr/local/go ]; then
-    sudo curl -O https://storage.googleapis.com/golang/go1.12.6.linux-amd64.tar.gz
-    sudo tar -xvf go1.12.6.linux-amd64.tar.gz
+    sudo curl -O https://storage.googleapis.com/golang/go${GOLANG_VERSION}.linux-amd64.tar.gz
+    sudo tar -xvf go${GOLANG_VERSION}.linux-amd64.tar.gz
     sudo mv go /usr/local
-    sudo rm go1.12.6.linux-amd64.tar.gz
+    sudo rm go${GOLANG_VERSION}.linux-amd64.tar.gz
     echo "export GOPATH=$GOPATH" >> "$VHOME/.profile"
     echo "export PATH=\$PATH:\$GOPATH/bin:/usr/local/go/bin" >> "$VHOME/.profile"
     echo "export GO111MODULE=on" >> "$VHOME/.profile"
